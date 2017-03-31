@@ -20,9 +20,23 @@ namespace HTX_Sparekasse
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public Dictionary<string, string> loginData = new Dictionary<string, string>();
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnLog_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow log = new MainWindow();
+            Welcome main = new Welcome();
+
+            this.Close();           
+            main.Show();
+            
+
         }
     }
 }
