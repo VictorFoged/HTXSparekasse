@@ -8,11 +8,11 @@ namespace HTX_Sparekasse
 {
     class bruger
     {
-        string fornavn;
-        string efternavn;
-        string username;
-        string password; //totally safe
-        List<konto> kontoListe = new List<konto>();
+        public string fornavn;
+        public string efternavn;
+        public string username;
+        public string password; //totally safe
+        public List<konto> kontoListe = new List<konto>();
 
         public bruger(string fNavn, string eNavn, string user, string pass)
         {

@@ -5,18 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HTX_Sparekasse"
         mc:Ignorable="d"
-        Title="Welcome" Height="351.724" Width="534.052" WindowStyle="ThreeDBorderWindow">
+        Title="HTX Sparekasse" Height="351.724" Width="534.052" WindowStyle="ThreeDBorderWindow">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="516">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="526">
             <TabItem Header="Konto Oversigt">
-                <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="listView" HorizontalAlignment="Left" Height="233" Margin="10,20,0,0" VerticalAlignment="Top" Width="419">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                <Grid Background="#FFE5E5E5" Margin="0,-13,0,0">
+
+                    <Label x:Name="lblWelcome" Content="Hej Fornavn Efternavn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="18" Foreground="Black" FontWeight="Bold"/>
+                    <Grid x:Name="konto1" Visibility="Hidden">
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,49,0,0" VerticalAlignment="Top" Width="490">
+                            <Border BorderBrush="Black" BorderThickness="1,0,0,0" Margin="345,1,-1,-1" Opacity="0.4"/>
+                        </Border>
+                        <Label x:Name="lblKontonavn1" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
+                        <Label x:Name="lblSaldo1" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,49,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    </Grid>
+                    <Grid x:Name="konto2" Visibility="Hidden">
+                        <Border BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,97,0,0" VerticalAlignment="Top" Width="490"/>
+                        <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="48" Margin="356,97,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
+                        <Label x:Name="lblKontonavn2" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
+                        <Label x:Name="lblSaldo2" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,97,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    </Grid>
+                    <Grid x:Name="konto3" Visibility="Hidden">
+                        <Border BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,145,0,0" VerticalAlignment="Top" Width="490"/>
+                        <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="48" Margin="356,145,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
+
+                        <Label x:Name="lblSaldo3" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,145,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                        <Label x:Name="lblKontonavn3" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
+                    </Grid>
+                    <Grid x:Name="konto4" Visibility="Hidden">
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,192,0,0" VerticalAlignment="Top" Width="490"/>
+                        <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="47" Margin="356,193,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
+
+                        <Label x:Name="lblKontonavn4" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
+                        <Label x:Name="lblSaldo4" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,192,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                    </Grid>
+                    <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="297,266,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="120" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center"/>
+                    <Button x:Name="button" Content="Opret Konto" HorizontalAlignment="Left" Margin="417,266,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="button_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Overførsler">
@@ -24,6 +48,11 @@
             </TabItem>
             <TabItem Header="Valuta">
                 <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Konto">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="btnLogOut" Content="Log Ud" HorizontalAlignment="Left" Margin="217,134,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
             </TabItem>
 
         </TabControl>

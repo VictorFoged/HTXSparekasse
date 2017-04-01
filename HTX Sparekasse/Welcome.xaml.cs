@@ -19,9 +19,43 @@ namespace HTX_Sparekasse
     /// </summary>
     public partial class Welcome : Window
     {
+        List<Grid> kontoer = new List<Grid>();
+        
+
         public Welcome()
         {
             InitializeComponent();
+            lblWelcome.Content = "Hej " + Bank.currentUser.fornavn + " " + Bank.currentUser.efternavn;
+            kontoer.Add(konto1);
+            kontoer.Add(konto2);
+            kontoer.Add(konto3);
+            kontoer.Add(konto4);
+
+
+
+        }
+
+        private void opretKonto_focus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= opretKonto_focus;
+            tb.Opacity = 100;
+        }
+
+        private void checkKonto()
+        {
+            int index = 0;
+            foreach (konto konto in Bank.currentUser.kontoListe)
+            {
+                kontoer[index].Visibility = Visibility.Visible;
+                index = index + 1;
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

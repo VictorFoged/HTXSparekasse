@@ -11,6 +11,7 @@ namespace HTX_Sparekasse
         string navn;
         double saldo = 0;
         bool active = true;
+
         Dictionary<string, double> historik = new Dictionary<string, double>();
 
         public konto(string name)

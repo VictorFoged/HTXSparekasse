@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="HTX Sparekasse" Height="350" Width="525">
     <Grid>
-        <TextBox x:Name="username" HorizontalAlignment="Left" Height="23" Margin="203,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="203,139,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="23" Margin="203,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="203,139,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
         <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="203,54,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Password" HorizontalAlignment="Left" Margin="203,113,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnLog" Content="Log in" HorizontalAlignment="Left" Margin="203,195,0,0" VerticalAlignment="Top" Width="120" Height="32" Click="btnLog_Click">
 
         </Button>
-        <Label x:Name="txtErr" Content="...." HorizontalAlignment="Left" Margin="203,167,0,0" VerticalAlignment="Top" FontStyle="Italic" TextOptions.TextHintingMode="Animated"/>
+        <Label x:Name="txtErr" Content="" HorizontalAlignment="Left" Margin="203,167,0,0" VerticalAlignment="Top" FontStyle="Italic" TextOptions.TextHintingMode="Animated" Foreground="Red"/>
         <Button x:Name="brnAcc" Content="Opret Bruger" HorizontalAlignment="Left" Margin="203,232,0,0" VerticalAlignment="Top" Width="120" Height="32" Click="brnAcc_Click"/>
 
     </Grid>

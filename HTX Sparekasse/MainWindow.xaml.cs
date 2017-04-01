@@ -29,10 +29,28 @@ namespace HTX_Sparekasse
         }
 
         private void btnLog_Click(object sender, RoutedEventArgs e)
-        {           
-            Welcome main = new Welcome();
-            this.Close();           
-            main.Show();
+        {
+
+            foreach (bruger user in Bank.userlist)
+            {
+                if (user.username == txtUsername.Text)
+                {
+                    if (user.password == txtPassword.Password)
+                    {
+                        Welcome main = new Welcome();
+                        Bank.currentUser = user;
+                        this.Close();
+                        main.Show();
+                    }
+                    else
+                    {
+                        txtErr.Content = "Forkert Password";
+                    }
+                }
+               
+            }
+                       
+            
             
 
         }
