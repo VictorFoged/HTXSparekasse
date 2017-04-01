@@ -15,7 +15,7 @@
 
         </Button>
         <Label x:Name="txtErr" Content="...." HorizontalAlignment="Left" Margin="203,167,0,0" VerticalAlignment="Top" FontStyle="Italic" TextOptions.TextHintingMode="Animated"/>
-        <Button x:Name="brnAcc" Content="Opret Bruger" HorizontalAlignment="Left" Margin="203,232,0,0" VerticalAlignment="Top" Width="120" Height="32"/>
+        <Button x:Name="brnAcc" Content="Opret Bruger" HorizontalAlignment="Left" Margin="203,232,0,0" VerticalAlignment="Top" Width="120" Height="32" Click="brnAcc_Click"/>
 
     </Grid>
 </Window>

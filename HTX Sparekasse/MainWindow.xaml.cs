@@ -21,7 +21,7 @@ namespace HTX_Sparekasse
     public partial class MainWindow : Window
     {
 
-        public Dictionary<string, string> loginData = new Dictionary<string, string>();
+        
 
         public MainWindow()
         {
@@ -29,14 +29,20 @@ namespace HTX_Sparekasse
         }
 
         private void btnLog_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow log = new MainWindow();
+        {           
             Welcome main = new Welcome();
-
             this.Close();           
             main.Show();
             
 
+        }
+
+        private void brnAcc_Click(object sender, RoutedEventArgs e)
+        {
+            CreateAcc main = new CreateAcc();
+
+            this.Close();
+            main.Show();
         }
     }
 }

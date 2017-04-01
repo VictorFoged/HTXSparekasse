@@ -14,5 +14,14 @@ namespace HTX_Sparekasse
         string password; //totally safe
         List<konto> kontoListe = new List<konto>();
 
+        public bruger(string fNavn, string eNavn, string user, string pass)
+        {
+            fornavn = fNavn;
+            efternavn = eNavn;
+            username = user;
+            password = pass;
+
+        }
+
     }
 }
