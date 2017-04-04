@@ -39,6 +39,8 @@ namespace HTX_Sparekasse
             this.Close();
             main.Show();
 
+            Bank.writeJson();
+
 
         }
 

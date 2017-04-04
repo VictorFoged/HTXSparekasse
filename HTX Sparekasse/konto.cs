@@ -8,9 +8,9 @@ namespace HTX_Sparekasse
 {
     class konto
     {
-        string navn;
-        double saldo = 0;
-        bool active = true;
+        public string navn;
+        public double saldo = 0;
+        public bool active = true;
 
         Dictionary<string, double> historik = new Dictionary<string, double>();
 

@@ -41,6 +41,7 @@
                     </Grid>
                     <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="297,266,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="120" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center"/>
                     <Button x:Name="button" Content="Opret Konto" HorizontalAlignment="Left" Margin="417,266,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="button_Click"/>
+                    <Label x:Name="lblCreateError" Content="" HorizontalAlignment="Left" Margin="184,264,0,0" VerticalAlignment="Top" Width="97" Background="{x:Null}" Foreground="Red"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Overførsler">

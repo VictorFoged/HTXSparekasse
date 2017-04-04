@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace HTX_Sparekasse
 {
@@ -20,12 +21,13 @@ namespace HTX_Sparekasse
     /// </summary>
     public partial class MainWindow : Window
     {
-
+       
         
 
         public MainWindow()
         {
             InitializeComponent();
+            Bank.loadJson();
         }
 
         private void btnLog_Click(object sender, RoutedEventArgs e)
@@ -37,8 +39,9 @@ namespace HTX_Sparekasse
                 {
                     if (user.password == txtPassword.Password)
                     {
-                        Welcome main = new Welcome();
                         Bank.currentUser = user;
+                        Welcome main = new Welcome();
+                        
                         this.Close();
                         main.Show();
                     }
@@ -62,5 +65,7 @@ namespace HTX_Sparekasse
             this.Close();
             main.Show();
         }
+
+
     }
 }

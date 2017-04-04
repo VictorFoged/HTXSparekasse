@@ -49,13 +49,40 @@ namespace HTX_Sparekasse
             foreach (konto konto in Bank.currentUser.kontoListe)
             {
                 kontoer[index].Visibility = Visibility.Visible;
+                switch (index)
+                {
+                    case 1:
+                        lblKontonavn1.Content = konto.navn;
+                        break;
+                    case 2:
+                        lblKontonavn2.Content = konto.navn;
+                        break;
+                    case 3:
+                        lblKontonavn3.Content = konto.navn;
+                        break;
+
+                    case 4:
+                        lblKontonavn4.Content = konto.navn;
+                        break;
+                    default:
+                        break;
+                }
                 index = index + 1;
             }
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Bank.currentUser.kontoListe.Count < 4)
+            {
+                Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text));
+                checkKonto();
+            }
+            else
+            {
+                lblCreateError.Content = "Maks 4 Kontoer";
+            }
+            
         }
     }
 }
