@@ -32,14 +32,14 @@ namespace HTX_Sparekasse
             string pass = txtPass.Text;
             
             Bank.userlist.Add(new bruger(fNavn, eNavn, user, pass));
+            Bank.writeJson();
 
-            
             MainWindow main = new MainWindow();
 
             this.Close();
             main.Show();
 
-            Bank.writeJson();
+            
 
 
         }
@@ -51,6 +51,14 @@ namespace HTX_Sparekasse
             tb.GotFocus -= user_gotFocus;
             tb.Opacity = 100;
 
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+
+            this.Close();
+            main.Show();
         }
     }
 }

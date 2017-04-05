@@ -30,6 +30,7 @@ namespace HTX_Sparekasse
             kontoer.Add(konto2);
             kontoer.Add(konto3);
             kontoer.Add(konto4);
+            checkKonto();
 
 
 
@@ -39,7 +40,7 @@ namespace HTX_Sparekasse
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= opretKonto_focus;
+            
             tb.Opacity = 100;
         }
 
@@ -51,17 +52,17 @@ namespace HTX_Sparekasse
                 kontoer[index].Visibility = Visibility.Visible;
                 switch (index)
                 {
-                    case 1:
+                    case 0:
                         lblKontonavn1.Content = konto.navn;
                         break;
-                    case 2:
+                    case 1:
                         lblKontonavn2.Content = konto.navn;
                         break;
-                    case 3:
+                    case 2:
                         lblKontonavn3.Content = konto.navn;
                         break;
 
-                    case 4:
+                    case 3:
                         lblKontonavn4.Content = konto.navn;
                         break;
                     default:
@@ -77,12 +78,43 @@ namespace HTX_Sparekasse
             {
                 Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text));
                 checkKonto();
+                Bank.writeJson();
             }
             else
             {
                 lblCreateError.Content = "Maks 4 Kontoer";
             }
             
+        }
+
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            Bank.currentUser = null;
+            this.Close();
+            main.Show();
+
+        }
+
+        
+        private void click1Grid(object sender, MouseButtonEventArgs e)
+        {
+            lblCreateError.Content = Bank.currentUser.kontoListe[0].navn;
+        }
+
+        private void click2Grid(object sender, MouseButtonEventArgs e)
+        {
+            lblCreateError.Content = Bank.currentUser.kontoListe[1].navn;
+        }
+
+        private void click3Grid(object sender, MouseButtonEventArgs e)
+        {
+            lblCreateError.Content = Bank.currentUser.kontoListe[2].navn;
+        }
+
+        private void click4Grid(object sender, MouseButtonEventArgs e)
+        {
+            lblCreateError.Content = Bank.currentUser.kontoListe[3].navn;
         }
     }
 }

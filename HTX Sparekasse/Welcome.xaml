@@ -12,27 +12,27 @@
                 <Grid Background="#FFE5E5E5" Margin="0,-13,0,0">
 
                     <Label x:Name="lblWelcome" Content="Hej Fornavn Efternavn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="18" Foreground="Black" FontWeight="Bold"/>
-                    <Grid x:Name="konto1" Visibility="Hidden">
+                    <Grid x:Name="konto1" Visibility="Hidden" PreviewMouseDown="click1Grid">
                         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,49,0,0" VerticalAlignment="Top" Width="490">
                             <Border BorderBrush="Black" BorderThickness="1,0,0,0" Margin="345,1,-1,-1" Opacity="0.4"/>
                         </Border>
                         <Label x:Name="lblKontonavn1" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                         <Label x:Name="lblSaldo1" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,49,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                     </Grid>
-                    <Grid x:Name="konto2" Visibility="Hidden">
+                    <Grid x:Name="konto2" Visibility="Hidden" PreviewMouseDown="click2Grid">
                         <Border BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,97,0,0" VerticalAlignment="Top" Width="490"/>
                         <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="48" Margin="356,97,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
                         <Label x:Name="lblKontonavn2" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                         <Label x:Name="lblSaldo2" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,97,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                     </Grid>
-                    <Grid x:Name="konto3" Visibility="Hidden">
+                    <Grid x:Name="konto3" Visibility="Hidden" PreviewMouseDown="click3Grid">
                         <Border BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,145,0,0" VerticalAlignment="Top" Width="490"/>
                         <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="48" Margin="356,145,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
 
                         <Label x:Name="lblSaldo3" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,145,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                         <Label x:Name="lblKontonavn3" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                     </Grid>
-                    <Grid x:Name="konto4" Visibility="Hidden">
+                    <Grid x:Name="konto4" Visibility="Hidden" PreviewMouseDown="click4Grid">
                         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,192,0,0" VerticalAlignment="Top" Width="490"/>
                         <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="47" Margin="356,193,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
 
@@ -52,7 +52,7 @@
             </TabItem>
             <TabItem Header="Konto">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="btnLogOut" Content="Log Ud" HorizontalAlignment="Left" Margin="217,134,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="btnLogOut" Content="Log Ud" HorizontalAlignment="Left" Margin="217,134,0,0" VerticalAlignment="Top" Width="75" Click="btnLogOut_Click"/>
                 </Grid>
             </TabItem>
 

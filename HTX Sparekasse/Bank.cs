@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace HTX_Sparekasse
 {
+
     class Bank
     {
         public static List<bruger> userlist = new List<bruger>();
-        public static bruger currentUser;
+        public static  bruger currentUser;
 
 
 

@@ -27,6 +27,7 @@ namespace HTX_Sparekasse
         public MainWindow()
         {
             InitializeComponent();
+            Bank HTX = new Bank();
             Bank.loadJson();
         }
 
