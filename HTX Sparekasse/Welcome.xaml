@@ -45,7 +45,29 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Overførsler">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="label" Content="Overfør Penge" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+                    <Label x:Name="label1" Content="Fra Konto" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="cbFrom" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="dKonto1" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto2" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto3" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto4" Visibility="Hidden"/>
+                        <ComboBoxItem Content="Nationalbanken"/>
+                    </ComboBox>
+                    <Label x:Name="label2" Content="Til Konto" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="cbTo" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="dKonto1c" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto2c" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto3c" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto4c" Visibility="Hidden"/>
+                        <ComboBoxItem Content="Nationalbanken"/>
+                    </ComboBox>
+                    <Label x:Name="label3" Content="Beløb:" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtValue" HorizontalAlignment="Left" Height="23" Margin="10,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="label4" Content="DKK" HorizontalAlignment="Left" Margin="130,186,0,0" VerticalAlignment="Top" Height="23"/>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Valuta">
                 <Grid Background="#FFE5E5E5"/>

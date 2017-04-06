@@ -31,8 +31,28 @@ namespace HTX_Sparekasse
             kontoer.Add(konto3);
             kontoer.Add(konto4);
             checkKonto();
+            checkCombo();
 
+        }
 
+        private void checkCombo()
+        {
+            List<ComboBoxItem> dropDown = new List<ComboBoxItem>();
+            dropDown.Add(dKonto1);
+            dropDown.Add(dKonto2);
+            dropDown.Add(dKonto3);
+            dropDown.Add(dKonto4);
+            int index = 0;
+            foreach (konto konto in Bank.currentUser.kontoListe)
+            {
+                dropDown[index].Content = konto.navn;
+                dropDown[index].Visibility = Visibility.Visible;
+                index = index + 1;
+            }
+            dKonto1c = dKonto1;
+            dKonto2c = dKonto2;
+            dKonto3c = dKonto3;
+            dKonto4c = dKonto4;
 
         }
 
@@ -78,6 +98,7 @@ namespace HTX_Sparekasse
             {
                 Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text));
                 checkKonto();
+                checkCombo();
                 Bank.writeJson();
             }
             else
