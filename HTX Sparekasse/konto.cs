@@ -9,7 +9,7 @@ namespace HTX_Sparekasse
     class konto
     {
         public string navn;
-        public double saldo = 0;
+        public decimal saldo = 0;
         public bool active = true;
 
         Dictionary<string, double> historik = new Dictionary<string, double>();
@@ -19,9 +19,17 @@ namespace HTX_Sparekasse
             navn = name;
         }
 
-        public void addCash(double val)
+        public void addCash(decimal val)
         {
             saldo = saldo + val;
         }
+
+        public static void transferCash(konto from, konto to, decimal val)
+        {
+            from.saldo = from.saldo - val;
+            to.saldo = to.saldo + val;
+        }
+
+
     }
 }

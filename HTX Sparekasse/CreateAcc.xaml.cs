@@ -31,17 +31,36 @@ namespace HTX_Sparekasse
             string user = txtUser.Text;
             string pass = txtPass.Text;
             
-            Bank.userlist.Add(new bruger(fNavn, eNavn, user, pass));
-            Bank.writeJson();
+            if(checkUser(user) == true)
+            {
+                Bank.userlist.Add(new bruger(fNavn, eNavn, user, pass));
+                Bank.writeJson();
+                lblUserError.Visibility = Visibility.Hidden;
+                MainWindow main = new MainWindow();
 
-            MainWindow main = new MainWindow();
+                this.Close();
+                main.Show();
+            }
+            else
+            {
+                lblUserError.Visibility = Visibility.Visible;
+            }
 
-            this.Close();
-            main.Show();
-
-            
+                 
 
 
+        }
+
+        private bool checkUser(string brugernavn)
+        {
+            foreach (bruger u in Bank.userlist)
+            {
+                if (u.username == brugernavn)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void user_gotFocus(object sender, RoutedEventArgs e)

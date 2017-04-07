@@ -49,10 +49,14 @@ namespace HTX_Sparekasse
                 dropDown[index].Visibility = Visibility.Visible;
                 index = index + 1;
             }
-            dKonto1c = dKonto1;
-            dKonto2c = dKonto2;
-            dKonto3c = dKonto3;
-            dKonto4c = dKonto4;
+            dKonto1c.Content = dKonto1.Content;
+            dKonto1c.Visibility = dKonto1.Visibility;
+            dKonto2c.Content = dKonto2.Content;
+            dKonto2c.Visibility = dKonto2.Visibility;
+            dKonto3c.Content = dKonto3.Content;
+            dKonto3c.Visibility = dKonto3.Visibility;
+            dKonto4c.Content = dKonto4.Content;
+            dKonto4c.Visibility = dKonto4.Visibility;
 
         }
 
@@ -74,16 +78,20 @@ namespace HTX_Sparekasse
                 {
                     case 0:
                         lblKontonavn1.Content = konto.navn;
+                        lblSaldo1.Content = Bank.currentUser.kontoListe[0].saldo;
                         break;
                     case 1:
                         lblKontonavn2.Content = konto.navn;
+                        lblSaldo2.Content = Bank.currentUser.kontoListe[1].saldo;
                         break;
                     case 2:
                         lblKontonavn3.Content = konto.navn;
+                        lblSaldo3.Content = Bank.currentUser.kontoListe[2].saldo;
                         break;
 
                     case 3:
                         lblKontonavn4.Content = konto.navn;
+                        lblSaldo4.Content = Bank.currentUser.kontoListe[3].saldo;
                         break;
                     default:
                         break;
@@ -136,6 +144,63 @@ namespace HTX_Sparekasse
         private void click4Grid(object sender, MouseButtonEventArgs e)
         {
             lblCreateError.Content = Bank.currentUser.kontoListe[3].navn;
+        }
+
+        private void btnTransfer_Click(object sender, RoutedEventArgs e)
+        {
+            
+            decimal val;
+            if (decimal.TryParse(txtValue.Text, out val))
+            {
+
+                if (cbFrom.SelectedIndex != -1)
+                {
+                    if (cbTo.SelectedIndex != -1)
+                    {
+                        if (cbFrom.SelectedIndex == 4)
+                        {
+                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].addCash(val);
+                            successPayment();
+                        }
+                        else
+                        {
+                            konto.transferCash(Bank.currentUser.kontoListe[cbFrom.SelectedIndex], Bank.currentUser.kontoListe[cbTo.SelectedIndex], val);
+                            successPayment();
+                        }
+                    }
+                    else
+                    {
+                        lblTransError.Content = "Vælg en konto at overføre til";
+                        lblTransError.Visibility = Visibility.Visible;
+                    }
+                    
+                }
+                else
+                {
+                    lblTransError.Content = "Vælg en konto at overføre fra";
+                    lblTransError.Visibility = Visibility.Visible;
+                }
+            }
+                
+            else
+            {
+                lblTransError.Content = "Indtast et beløb";
+                lblTransError.Visibility = Visibility.Visible;
+            }
+
+            checkKonto();
+            Bank.writeJson();
+            
+        }
+
+        private void successPayment()
+        {
+            txtValue.Text = "";
+            cbFrom.SelectedIndex = -1;
+            cbTo.SelectedIndex = -1 ;
+            lblTransError.Foreground = GreenLabel.Foreground;
+            lblTransError.Content = "Overførsel Gennemført";
+            lblTransError.Visibility = Visibility.Visible;
         }
     }
 }

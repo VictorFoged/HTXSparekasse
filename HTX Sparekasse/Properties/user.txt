@@ -1,0 +1,9 @@
+[
+  {
+    "fornavn": "Victor",
+    "efternavn": "Foged",
+    "username": "Vifo",
+    "password": "vifo77",
+    "kontoListe": []
+  }
+]

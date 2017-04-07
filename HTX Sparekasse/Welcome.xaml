@@ -61,11 +61,14 @@
                         <ComboBoxItem x:Name="dKonto2c" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto3c" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto4c" Visibility="Hidden"/>
-                        <ComboBoxItem Content="Nationalbanken"/>
+
                     </ComboBox>
                     <Label x:Name="label3" Content="Beløb:" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="txtValue" HorizontalAlignment="Left" Height="23" Margin="10,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Label x:Name="label4" Content="DKK" HorizontalAlignment="Left" Margin="130,186,0,0" VerticalAlignment="Top" Height="23"/>
+                    <Button x:Name="btnTransfer" Content="Overfør" HorizontalAlignment="Left" Margin="147,250,0,0" VerticalAlignment="Top" Width="75" Click="btnTransfer_Click"/>
+                    <Label x:Name="lblTransError" Content="Fejl fejl fejl fejl" HorizontalAlignment="Left" Margin="10,224,0,0" VerticalAlignment="Top" Foreground="Red" HorizontalContentAlignment="Right" Width="212" Visibility="Hidden"/>
+                    <Label x:Name="GreenLabel" Content="Label" HorizontalAlignment="Left" Margin="323,86,0,0" VerticalAlignment="Top" Foreground="#FF009300" Visibility="Hidden"/>
 
                 </Grid>
             </TabItem>

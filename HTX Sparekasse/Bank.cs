@@ -13,7 +13,7 @@ namespace HTX_Sparekasse
     {
         public static List<bruger> userlist = new List<bruger>();
         public static  bruger currentUser;
-
+        public static string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.txt");
 
 
         public static void writeJson()
@@ -21,12 +21,16 @@ namespace HTX_Sparekasse
             string json = JsonConvert.SerializeObject(userlist.ToArray(), Formatting.Indented);
 
             //write string to file
-            System.IO.File.WriteAllText(@"C:\Users\Victor\Pictures\Camera Roll\user.txt", json);
+            
+            System.IO.File.WriteAllText(path, json);
+            
         }
 
         public static void loadJson()
         {
-            using (StreamReader r = new StreamReader(@"C:\Users\Victor\Pictures\Camera Roll\user.txt"))
+
+            
+            using (StreamReader r = new StreamReader(path))
             {
                 string json = r.ReadToEnd();
                 userlist = JsonConvert.DeserializeObject<List<bruger>>(json);
