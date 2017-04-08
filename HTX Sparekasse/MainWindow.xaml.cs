@@ -28,7 +28,9 @@ namespace HTX_Sparekasse
         {
             InitializeComponent();
             Bank HTX = new Bank();
+            
             Bank.loadJson();
+            
         }
 
         private void btnLog_Click(object sender, RoutedEventArgs e)
@@ -53,6 +55,12 @@ namespace HTX_Sparekasse
                 }
                
             }
+            if (txtErr.Content.ToString() != "Forkert Password")
+            {
+                txtErr.Content = "Brugernavn ikke fundet";
+            }
+            
+
                        
             
             
@@ -67,6 +75,12 @@ namespace HTX_Sparekasse
             main.Show();
         }
 
-
+        private void enterKey(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                btnLog_Click(sender, e);
+            }
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace HTX_Sparekasse
             string fNavn = txtNavn.Text;
             string eNavn = txtNavn1.Text;
             string user = txtUser.Text;
-            string pass = txtPass.Text;
+            string pass = txtPass.Password;
             
             if(checkUser(user) == true)
             {

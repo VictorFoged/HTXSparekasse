@@ -202,5 +202,100 @@ namespace HTX_Sparekasse
             lblTransError.Content = "Overførsel Gennemført";
             lblTransError.Visibility = Visibility.Visible;
         }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            //0 = DKK, 1 = USD, 2 = EUR, 3 = GBP
+            Dictionary<int, List<double>> valuta = new Dictionary<int, List<double>>();
+            valuta[0] = new List<double> { 1, 0.1419, 0.1343, 0.1151 };
+            valuta[1] = new List<double> { 7.0216, 1, 0.9436, 0.8081 };
+            valuta[2] = new List<double> { 7.4413, 1.0598, 1, 0.8564 };
+            valuta[3] = new List<double> { 8.6891, 1.2375, 1.1677, 1 };
+
+            double input;
+
+            if (Double.TryParse(txtValFrom.Text, out input))
+            {
+                if (cbValFrom.SelectedIndex != -1 || cbValTo.SelectedIndex != -1)
+                {
+                    double value = Math.Round(input * valuta[cbValFrom.SelectedIndex][cbValTo.SelectedIndex], 2);
+                    txtValTo.Text = value.ToString();
+                }
+               
+            }
+
+            
+
+
+        }
+
+        private void refill(object sender, RoutedEventArgs e)
+        {
+
+            TextBox tb = (TextBox)sender;
+
+            if (tb.Text == string.Empty)
+            {
+                tb.Text = "Indtast Beløb";
+            }
+        }
+
+        private void changeColor(object sender, MouseEventArgs e)
+        {
+            Grid gr = (Grid)sender;
+            
+            switch (gr.Name)
+            {
+                case "konto1":
+                    brdKonto1.Background = hovercolor.Background;
+                    
+                    break;
+                case "konto2":
+                    brdKonto2.Background = hovercolor.Background;
+                    
+                    break;
+                case "konto3":
+                    brdKonto3.Background = hovercolor.Background;
+                    
+                    break;
+                case "konto4":
+                    brdKonto4.Background = hovercolor.Background;
+                    
+                    break;
+
+
+                default:
+                    break;
+            }
+        }
+
+        private void defaultColor(object sender, MouseEventArgs e)
+        {
+            Grid gr = (Grid)sender;
+
+            switch (gr.Name)
+            {
+                case "konto1":
+                    brdKonto1.Background = backgroundGrid.Background;
+
+                    break;
+                case "konto2":
+                    brdKonto2.Background = backgroundGrid.Background;
+
+                    break;
+                case "konto3":
+                    brdKonto3.Background = backgroundGrid.Background;
+
+                    break;
+                case "konto4":
+                    brdKonto4.Background = backgroundGrid.Background;
+
+                    break;
+
+
+                default:
+                    break;
+            }
+        }
     }
 }

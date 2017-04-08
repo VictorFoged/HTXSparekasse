@@ -8,7 +8,7 @@
         Title="HTX Sparekasse" Height="350" Width="525">
     <Grid>
         <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="23" Margin="203,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="203,139,0,0" VerticalAlignment="Top" Width="120" Height="23"/>
+        <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="203,139,0,0" VerticalAlignment="Top" Width="120" Height="23" KeyDown="enterKey"/>
         <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="203,54,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Password" HorizontalAlignment="Left" Margin="203,113,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnLog" Content="Log in" HorizontalAlignment="Left" Margin="203,195,0,0" VerticalAlignment="Top" Width="120" Height="32" Click="btnLog_Click">

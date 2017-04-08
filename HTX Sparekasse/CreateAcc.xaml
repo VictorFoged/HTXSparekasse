@@ -13,7 +13,7 @@
         <Label x:Name="label1" Content="Vælg Brugernavn" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtUser" HorizontalAlignment="Left" Height="23" Margin="10,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="3"/>
         <Label x:Name="label2" Content="Opret Adgangskode" HorizontalAlignment="Left" Margin="10,148,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPass" HorizontalAlignment="Left" Height="23" Margin="10,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="4" FontFamily="Wingdings"/>
+        <PasswordBox x:Name="txtPass" HorizontalAlignment="Left" Height="23" Margin="10,174,0,0"  VerticalAlignment="Top" Width="120" TabIndex="4" FontFamily="Wingdings"/>
         <Button x:Name="btnOpret" Content="Opret Bruger" HorizontalAlignment="Left" Margin="173,225,0,0" VerticalAlignment="Top" Width="90" Click="btnOpret_Click" Height="34"/>
         <Button x:Name="button" Content="&lt; - Tilbage" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
         <Label x:Name="lblUserError" Content="Brugernavn er taget" HorizontalAlignment="Left" Margin="130,106,0,0" VerticalAlignment="Top" Height="23" Width="117" FontSize="10" Foreground="Red" Visibility="Hidden"/>

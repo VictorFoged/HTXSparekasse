@@ -9,39 +9,40 @@
     <Grid>
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="526">
             <TabItem Header="Konto Oversigt">
-                <Grid Background="#FFE5E5E5" Margin="0,-13,0,0">
+                <Grid x:Name="backgroundGrid" Background="#FFE5E5E5" Margin="0,-13,0,0">
 
                     <Label x:Name="lblWelcome" Content="Hej Fornavn Efternavn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="18" Foreground="Black" FontWeight="Bold"/>
-                    <Grid x:Name="konto1" Visibility="Hidden" PreviewMouseDown="click1Grid">
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,49,0,0" VerticalAlignment="Top" Width="490">
+                    <Grid x:Name="konto1" PreviewMouseDown="click1Grid" MouseEnter="changeColor" Margin="0,0,0,209" MouseLeave="defaultColor" Visibility="Hidden">
+                        <Border x:Name="brdKonto1" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,49,0,0" VerticalAlignment="Top" Width="490">
                             <Border BorderBrush="Black" BorderThickness="1,0,0,0" Margin="345,1,-1,-1" Opacity="0.4"/>
                         </Border>
-                        <Label x:Name="lblKontonavn1" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
+                        <Label x:Name="lblKontonavn1" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="48" Width="346" VerticalContentAlignment="Center"/>
                         <Label x:Name="lblSaldo1" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,49,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                     </Grid>
-                    <Grid x:Name="konto2" Visibility="Hidden" PreviewMouseDown="click2Grid">
-                        <Border BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,97,0,0" VerticalAlignment="Top" Width="490"/>
+                    <Grid x:Name="konto2" PreviewMouseDown="click2Grid" MouseEnter="changeColor" MouseLeave="defaultColor" Visibility="Hidden">
+                        <Border x:Name="brdKonto2" BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,97,0,0" VerticalAlignment="Top" Width="490"/>
                         <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="48" Margin="356,97,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
                         <Label x:Name="lblKontonavn2" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,97,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                         <Label x:Name="lblSaldo2" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,97,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                     </Grid>
-                    <Grid x:Name="konto3" Visibility="Hidden" PreviewMouseDown="click3Grid">
-                        <Border BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,145,0,0" VerticalAlignment="Top" Width="490"/>
+                    <Grid x:Name="konto3" PreviewMouseDown="click3Grid"  MouseEnter="changeColor" MouseLeave="defaultColor" Visibility="Hidden">
+                        <Border x:Name="brdKonto3" BorderBrush="Black" BorderThickness="1,0,1,1" HorizontalAlignment="Left" Height="48" Margin="10,145,0,0" VerticalAlignment="Top" Width="490"/>
                         <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="48" Margin="356,145,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
 
                         <Label x:Name="lblSaldo3" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,145,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                         <Label x:Name="lblKontonavn3" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                     </Grid>
-                    <Grid x:Name="konto4" Visibility="Hidden" PreviewMouseDown="click4Grid">
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,192,0,0" VerticalAlignment="Top" Width="490"/>
+                    <Grid x:Name="konto4" PreviewMouseDown="click4Grid"  MouseEnter="changeColor" MouseLeave="defaultColor" Visibility="Hidden">
+                        <Border x:Name="brdKonto4" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="48" Margin="10,192,0,0" VerticalAlignment="Top" Width="490"/>
                         <Border BorderBrush="Black" BorderThickness="1,0,0,0" HorizontalAlignment="Left" Height="47" Margin="356,193,0,0" VerticalAlignment="Top" Width="144" Opacity="0.4"/>
 
                         <Label x:Name="lblKontonavn4" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                         <Label x:Name="lblSaldo4" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,192,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                     </Grid>
-                    <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="297,266,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="120" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center"/>
+                    <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="297,266,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="120" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center" IsTabStop="False"/>
                     <Button x:Name="button" Content="Opret Konto" HorizontalAlignment="Left" Margin="417,266,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="button_Click"/>
                     <Label x:Name="lblCreateError" Content="" HorizontalAlignment="Left" Margin="184,264,0,0" VerticalAlignment="Top" Width="97" Background="{x:Null}" Foreground="Red"/>
+                    <Label x:Name="hovercolor" Content="Label" HorizontalAlignment="Left" Margin="279,156,0,0" VerticalAlignment="Top" Background="#FFD1D1D1" Visibility="Collapsed"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Overførsler">
@@ -73,7 +74,26 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Valuta">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="txtValFrom" HorizontalAlignment="Left" Height="32" Margin="121,111,0,0" TextWrapping="Wrap" Text="Indtast Beløb" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center" IsTabStop="False" IsHitTestVisible="True" GotFocus="opretKonto_focus" VerticalContentAlignment="Center" LostFocus="refill"/>
+                    <TextBox x:Name="txtValTo" HorizontalAlignment="Left" Height="32" Margin="288,111,0,0" TextWrapping="Wrap" Text="Beregnet Valuta" VerticalAlignment="Top" Width="120" IsHitTestVisible="False" Focusable="False" IsTabStop="False" AllowDrop="False" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <ComboBox x:Name="cbValFrom" HorizontalAlignment="Left" Margin="121,148,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center">
+                        <ComboBoxItem Content="DKK"/>
+                        <ComboBoxItem Content="USD"/>
+                        <ComboBoxItem Content="EUR"/>
+                        <ComboBoxItem Content="GBP"/>
+
+                    </ComboBox>
+                    <ComboBox x:Name="cbValTo" HorizontalAlignment="Left" Margin="288,148,0,0" VerticalAlignment="Top" Width="120" HorizontalContentAlignment="Center">
+                        <ComboBoxItem Content="DKK"/>
+                        <ComboBoxItem Content="USD"/>
+                        <ComboBoxItem Content="EUR"/>
+                        <ComboBoxItem Content="GBP"/>
+                    </ComboBox>
+                    <Label x:Name="label5" Content="-&gt;" HorizontalAlignment="Left" Margin="254,115,0,0" VerticalAlignment="Top" Width="21"/>
+                    <Button x:Name="button1" Content="Beregn" HorizontalAlignment="Left" Margin="228,188,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+                    <Label x:Name="label6" Content="Valuta Beregner" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="520" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Konto">
                 <Grid Background="#FFE5E5E5">

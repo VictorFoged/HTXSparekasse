@@ -21,13 +21,13 @@ namespace HTX_Sparekasse
 
         public void addCash(decimal val)
         {
-            saldo = saldo + val;
+            saldo = Math.Round(saldo + val, 2, MidpointRounding.ToEven);
         }
 
         public static void transferCash(konto from, konto to, decimal val)
         {
-            from.saldo = from.saldo - val;
-            to.saldo = to.saldo + val;
+            from.saldo = Math.Round(from.saldo - val,2, MidpointRounding.ToEven);
+            to.saldo = Math.Round(to.saldo + val, 2, MidpointRounding.ToEven);
         }
 
 
