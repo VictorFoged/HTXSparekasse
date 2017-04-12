@@ -128,22 +128,27 @@ namespace HTX_Sparekasse
         
         private void click1Grid(object sender, MouseButtonEventArgs e)
         {
-            lblCreateError.Content = Bank.currentUser.kontoListe[0].navn;
+            KontoView konto = new KontoView(Bank.currentUser.kontoListe[0]);          
+            konto.Show();
+            
         }
 
         private void click2Grid(object sender, MouseButtonEventArgs e)
         {
-            lblCreateError.Content = Bank.currentUser.kontoListe[1].navn;
+            KontoView konto = new KontoView(Bank.currentUser.kontoListe[1]);
+            konto.Show();
         }
 
         private void click3Grid(object sender, MouseButtonEventArgs e)
         {
-            lblCreateError.Content = Bank.currentUser.kontoListe[2].navn;
+            KontoView konto = new KontoView(Bank.currentUser.kontoListe[2]);
+            konto.Show();
         }
 
         private void click4Grid(object sender, MouseButtonEventArgs e)
         {
-            lblCreateError.Content = Bank.currentUser.kontoListe[3].navn;
+            KontoView konto = new KontoView(Bank.currentUser.kontoListe[3]);
+            konto.Show();
         }
 
         private void btnTransfer_Click(object sender, RoutedEventArgs e)
@@ -160,11 +165,15 @@ namespace HTX_Sparekasse
                         if (cbFrom.SelectedIndex == 4)
                         {
                             Bank.currentUser.kontoListe[cbTo.SelectedIndex].addCash(val);
+                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val));
+                            
                             successPayment();
                         }
                         else
                         {
                             konto.transferCash(Bank.currentUser.kontoListe[cbFrom.SelectedIndex], Bank.currentUser.kontoListe[cbTo.SelectedIndex], val);
+                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val));
+                            Bank.currentUser.kontoListe[cbFrom.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, -val));
                             successPayment();
                         }
                     }

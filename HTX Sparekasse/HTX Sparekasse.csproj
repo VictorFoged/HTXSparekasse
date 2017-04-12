@@ -65,10 +65,18 @@
       <DependentUpon>CreateAcc.xaml</DependentUpon>
     </Compile>
     <Compile Include="konto.cs" />
+    <Compile Include="KontoView.xaml.cs">
+      <DependentUpon>KontoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="transfer.cs" />
     <Compile Include="Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
     <Page Include="CreateAcc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KontoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

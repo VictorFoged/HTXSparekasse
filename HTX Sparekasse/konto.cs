@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HTX_Sparekasse
 {
-    class konto
+    public class konto
     {
         public string navn;
         public decimal saldo = 0;
         public bool active = true;
 
-        Dictionary<string, double> historik = new Dictionary<string, double>();
+        public List<transfer> oversigt = new List<transfer>();
 
         public konto(string name)
         {

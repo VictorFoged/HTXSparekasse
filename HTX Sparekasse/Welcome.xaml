@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HTX_Sparekasse"
         mc:Ignorable="d"
-        Title="HTX Sparekasse" Height="351.724" Width="534.052" WindowStyle="ThreeDBorderWindow">
+        Title="HTX Sparekasse" Height="364.724" Width="534.052" WindowStyle="ThreeDBorderWindow">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="321" VerticalAlignment="Top" Width="526">
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="334" VerticalAlignment="Top" Width="526">
             <TabItem Header="Konto Oversigt">
                 <Grid x:Name="backgroundGrid" Background="#FFE5E5E5" Margin="0,-13,0,0">
 
@@ -39,37 +39,39 @@
                         <Label x:Name="lblKontonavn4" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                         <Label x:Name="lblSaldo4" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,192,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                     </Grid>
-                    <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="297,266,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="120" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center" IsTabStop="False"/>
-                    <Button x:Name="button" Content="Opret Konto" HorizontalAlignment="Left" Margin="417,266,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="button_Click"/>
+                    <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="297,273,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="120" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center" IsTabStop="False"/>
+                    <Button x:Name="button" Content="Opret Konto" HorizontalAlignment="Left" Margin="417,273,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="button_Click"/>
                     <Label x:Name="lblCreateError" Content="" HorizontalAlignment="Left" Margin="184,264,0,0" VerticalAlignment="Top" Width="97" Background="{x:Null}" Foreground="Red"/>
                     <Label x:Name="hovercolor" Content="Label" HorizontalAlignment="Left" Margin="279,156,0,0" VerticalAlignment="Top" Background="#FFD1D1D1" Visibility="Collapsed"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Overførsler">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="label" Content="Overfør Penge" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
-                    <Label x:Name="label1" Content="Fra Konto" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="cbFrom" HorizontalAlignment="Left" Margin="10,75,0,0" VerticalAlignment="Top" Width="120">
+                    <Label x:Name="label" Content="Overfør Penge" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+                    <Label x:Name="label1" Content="Fra Konto" HorizontalAlignment="Left" Margin="6,39,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="cbFrom" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Width="120">
                         <ComboBoxItem x:Name="dKonto1" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto2" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto3" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto4" Visibility="Hidden"/>
                         <ComboBoxItem Content="Nationalbanken"/>
                     </ComboBox>
-                    <Label x:Name="label2" Content="Til Konto" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="cbTo" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="120">
+                    <Label x:Name="label2" Content="Til Konto" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="cbTo" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top" Width="120">
                         <ComboBoxItem x:Name="dKonto1c" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto2c" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto3c" Visibility="Hidden"/>
                         <ComboBoxItem x:Name="dKonto4c" Visibility="Hidden"/>
 
                     </ComboBox>
-                    <Label x:Name="label3" Content="Beløb:" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtValue" HorizontalAlignment="Left" Height="23" Margin="10,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Label x:Name="label4" Content="DKK" HorizontalAlignment="Left" Margin="130,186,0,0" VerticalAlignment="Top" Height="23"/>
-                    <Button x:Name="btnTransfer" Content="Overfør" HorizontalAlignment="Left" Margin="147,250,0,0" VerticalAlignment="Top" Width="75" Click="btnTransfer_Click"/>
-                    <Label x:Name="lblTransError" Content="Fejl fejl fejl fejl" HorizontalAlignment="Left" Margin="10,224,0,0" VerticalAlignment="Top" Foreground="Red" HorizontalContentAlignment="Right" Width="212" Visibility="Hidden"/>
+                    <Label x:Name="label3" Content="Beløb:" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtValue" HorizontalAlignment="Left" Height="23" Margin="10,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="label4" Content="DKK" HorizontalAlignment="Left" Margin="130,171,0,0" VerticalAlignment="Top" Height="23"/>
+                    <Button x:Name="btnTransfer" Content="Overfør" HorizontalAlignment="Left" Margin="147,273,0,0" VerticalAlignment="Top" Width="75" Click="btnTransfer_Click"/>
+                    <Label x:Name="lblTransError" Content="Fejl fejl fejl fejl" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Foreground="Red" HorizontalContentAlignment="Right" Width="212" Visibility="Hidden"/>
                     <Label x:Name="GreenLabel" Content="Label" HorizontalAlignment="Left" Margin="323,86,0,0" VerticalAlignment="Top" Foreground="#FF009300" Visibility="Hidden"/>
+                    <Label x:Name="label7" Content="Note:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.316,0.423"/>
+                    <TextBox x:Name="txtNote" HorizontalAlignment="Left" Height="23" Margin="10,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
 
                 </Grid>
             </TabItem>
