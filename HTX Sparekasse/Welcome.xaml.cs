@@ -35,7 +35,7 @@ namespace HTX_Sparekasse
 
         }
 
-        private void checkCombo()
+        public void checkCombo()
         {
             List<ComboBoxItem> dropDown = new List<ComboBoxItem>();
             dropDown.Add(dKonto1);
@@ -46,7 +46,15 @@ namespace HTX_Sparekasse
             foreach (konto konto in Bank.currentUser.kontoListe)
             {
                 dropDown[index].Content = konto.navn;
-                dropDown[index].Visibility = Visibility.Visible;
+                if (konto.active == true)
+                {
+                    dropDown[index].Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    dropDown[index].Visibility = Visibility.Collapsed;
+                }
+                
                 index = index + 1;
             }
             dKonto1c.Content = dKonto1.Content;
@@ -58,6 +66,16 @@ namespace HTX_Sparekasse
             dKonto4c.Content = dKonto4.Content;
             dKonto4c.Visibility = dKonto4.Visibility;
 
+
+            dKonto1cc.Content = dKonto1.Content;
+            dKonto1cc.Visibility = dKonto1.Visibility;
+            dKonto2cc.Content = dKonto2.Content;
+            dKonto2cc.Visibility = dKonto2.Visibility;
+            dKonto3cc.Content = dKonto3.Content;
+            dKonto3cc.Visibility = dKonto3.Visibility;
+            dKonto4cc.Content = dKonto4.Content;
+            dKonto4cc.Visibility = dKonto4.Visibility;
+
         }
 
         private void opretKonto_focus(object sender, RoutedEventArgs e)
@@ -68,30 +86,39 @@ namespace HTX_Sparekasse
             tb.Opacity = 100;
         }
 
-        private void checkKonto()
+        public void checkKonto()
         {
             int index = 0;
+            konto1.Visibility = Visibility.Hidden;
+            konto2.Visibility = Visibility.Hidden;
+            konto3.Visibility = Visibility.Hidden;
+            konto4.Visibility = Visibility.Hidden;
             foreach (konto konto in Bank.currentUser.kontoListe)
             {
+                
                 kontoer[index].Visibility = Visibility.Visible;
                 switch (index)
                 {
                     case 0:
                         lblKontonavn1.Content = konto.navn;
                         lblSaldo1.Content = Bank.currentUser.kontoListe[0].saldo;
+                        
                         break;
                     case 1:
                         lblKontonavn2.Content = konto.navn;
                         lblSaldo2.Content = Bank.currentUser.kontoListe[1].saldo;
+                        
                         break;
                     case 2:
                         lblKontonavn3.Content = konto.navn;
                         lblSaldo3.Content = Bank.currentUser.kontoListe[2].saldo;
+                        
                         break;
 
                     case 3:
                         lblKontonavn4.Content = konto.navn;
                         lblSaldo4.Content = Bank.currentUser.kontoListe[3].saldo;
+                        
                         break;
                     default:
                         break;
@@ -104,10 +131,19 @@ namespace HTX_Sparekasse
         {
             if (Bank.currentUser.kontoListe.Count < 4)
             {
-                Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text));
-                checkKonto();
-                checkCombo();
-                Bank.writeJson();
+                if (cbKontoValg.SelectedIndex > 0)
+                {
+                    Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text, cbKontoValg.SelectedIndex));
+
+                    checkKonto();
+                    checkCombo();
+                    Bank.writeJson();
+                }
+                else
+                {
+                    lblCreateError.Content = "Vælg Kontotype";
+                }
+                
             }
             else
             {
@@ -125,38 +161,44 @@ namespace HTX_Sparekasse
 
         }
 
-        
+        public static Welcome cWin;
         private void click1Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto = new KontoView(Bank.currentUser.kontoListe[0]);          
-            konto.Show();
+            KontoView konto1 = new KontoView(Bank.currentUser.kontoListe[0]);
+            cWin = this;
+            konto1.Hide();          
+            konto1.Show();
             
         }
 
         private void click2Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto = new KontoView(Bank.currentUser.kontoListe[1]);
-            konto.Show();
+            KontoView konto2 = new KontoView(Bank.currentUser.kontoListe[1]);
+            cWin = this;
+            konto2.Show();
         }
 
         private void click3Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto = new KontoView(Bank.currentUser.kontoListe[2]);
-            konto.Show();
+            KontoView konto3 = new KontoView(Bank.currentUser.kontoListe[2]);
+            cWin = this;
+            konto3.Show();
         }
 
         private void click4Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto = new KontoView(Bank.currentUser.kontoListe[3]);
-            konto.Show();
+            KontoView konto4 = new KontoView(Bank.currentUser.kontoListe[3]);
+            cWin = this;
+            konto4.Show();
         }
 
         private void btnTransfer_Click(object sender, RoutedEventArgs e)
         {
-            
+            lblTransError.Visibility = Visibility.Hidden;
             decimal val;
             if (decimal.TryParse(txtValue.Text, out val))
             {
+
 
                 if (cbFrom.SelectedIndex != -1)
                 {
@@ -165,15 +207,15 @@ namespace HTX_Sparekasse
                         if (cbFrom.SelectedIndex == 4)
                         {
                             Bank.currentUser.kontoListe[cbTo.SelectedIndex].addCash(val);
-                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val));
+                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val, Bank.currentUser.kontoListe[cbTo.SelectedIndex].saldo));
                             
                             successPayment();
                         }
                         else
                         {
                             konto.transferCash(Bank.currentUser.kontoListe[cbFrom.SelectedIndex], Bank.currentUser.kontoListe[cbTo.SelectedIndex], val);
-                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val));
-                            Bank.currentUser.kontoListe[cbFrom.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, -val));
+                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val, Bank.currentUser.kontoListe[cbTo.SelectedIndex].saldo));
+                            Bank.currentUser.kontoListe[cbFrom.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, -val, Bank.currentUser.kontoListe[cbFrom.SelectedIndex].saldo));
                             successPayment();
                         }
                     }
@@ -207,6 +249,7 @@ namespace HTX_Sparekasse
             txtValue.Text = "";
             cbFrom.SelectedIndex = -1;
             cbTo.SelectedIndex = -1 ;
+            txtNote.Text = string.Empty;
             lblTransError.Foreground = GreenLabel.Foreground;
             lblTransError.Content = "Overførsel Gennemført";
             lblTransError.Visibility = Visibility.Visible;
@@ -248,7 +291,7 @@ namespace HTX_Sparekasse
                 tb.Text = "Indtast Beløb";
             }
         }
-
+        
         private void changeColor(object sender, MouseEventArgs e)
         {
             Grid gr = (Grid)sender;
@@ -305,6 +348,86 @@ namespace HTX_Sparekasse
                 default:
                     break;
             }
+        }
+
+        private void btnBeregnRenter_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime today = DateTime.Today;
+            DateTime inputDate;
+            DateTime? date = datePicker.SelectedDate;
+            konto valgtKonto = Bank.currentUser.kontoListe[renteKonto.SelectedIndex];
+            decimal saldo = valgtKonto.saldo;
+            decimal åop = 0;
+
+            switch (valgtKonto.kontoType)
+            {
+                case 1:
+                    åop = 0;
+                    break;
+                case 2:
+                    åop = 0.005m;
+                    break;
+                case 3:
+                    åop = 0.01m;
+                    break;
+                default:
+                    break;
+            }
+            if (valgtKonto.saldo < 0)
+            {
+                åop = -0.2m;
+            }
+
+
+
+
+            if (date == null)
+            {
+
+            }
+            else
+            {
+                DateTime.TryParse(date.Value.ToString(), out inputDate);
+                TimeSpan tSpan = inputDate - today;
+
+                int daysDiff = tSpan.Days;
+                int yearDiff = daysDiff / 365;
+                double p;
+                double k;
+                Double.TryParse(åop.ToString(), out p);
+                Double.TryParse(valgtKonto.saldo.ToString(), out k);
+
+                if (k < 0)
+                {
+                    double afterSaldo = k * Math.Pow(1 + -p / 365, daysDiff);
+                    double rente = afterSaldo - k;
+                    txtRente.Text = Math.Round(rente, 2).ToString();
+                    txtSaldoRente.Text = Math.Round(-afterSaldo, 2).ToString();
+                }
+                else
+                {
+                    double afterSaldo = k * Math.Pow(1 + p / 365, daysDiff);
+                    double rente = afterSaldo - k;
+                    txtRente.Text = Math.Round(rente, 2).ToString();
+                    txtSaldoRente.Text = Math.Round(afterSaldo, 2).ToString();
+                }
+                
+                
+
+
+                
+                
+            }
+
+
+            
+
+            
+
+            //Console.WriteLine(tSpan.Days);
+            //Console.WriteLine(inputDate);
+            //Console.WriteLine(datePicker.SelectedDate);
+            //Console.WriteLine(today);
         }
     }
 }

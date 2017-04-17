@@ -4,11 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HTX_Sparekasse"
-        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="HTX_Sparekasse.KontoView"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Name="kontOversigt" x:Class="HTX_Sparekasse.KontoView"
         mc:Ignorable="d"
-        Title="KontoView" Height="369.797" Width="490.723">
+        Title="Konto Oversigt" Height="387.131" Width="504.056">
     <Grid Margin="0,0,11,0">
-        <ListView Margin="10,132,122,10" Name="transfers">
+        <ListView Margin="8,132,0,0" Name="transfers" HorizontalAlignment="Left" Width="365" Height="207" VerticalAlignment="Top">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Overførsel" Width="160" DisplayMemberBinding="{Binding Overførsel}" />
@@ -20,6 +20,10 @@
         <Label x:Name="label" Content="Saldo:" HorizontalAlignment="Left" Margin="18,53,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="lblSaldo" Content="10055 DKK" HorizontalAlignment="Left" Margin="56,53,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="lblKontoNavn" Content="Kontonavn" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16"/>
-        <Label x:Name="label1" Content="Kontotype" HorizontalAlignment="Left" Margin="18,31,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="9" FontStyle="Italic"/>
+        <Label x:Name="lblKontotype" Content="Kontotype" HorizontalAlignment="Left" Margin="18,31,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="9" FontStyle="Italic"/>
+        <Button x:Name="btnWithdraw" Content="Hæv Penge" HorizontalAlignment="Left" Margin="110,98,0,0" VerticalAlignment="Top" Width="75" Height="23" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnWithdraw_Click"/>
+        <TextBox x:Name="txtBeløb" HorizontalAlignment="Left" Height="23" Margin="18,98,0,0" TextWrapping="Wrap" Text="Indtast Beløb" VerticalAlignment="Top" Width="92" VerticalContentAlignment="Center" Opacity="0.5" GotFocus="opaBeløb"/>
+        <Button x:Name="btnDeactivate" Content="Deaktiver Konto" HorizontalAlignment="Left" Margin="383,286,0,0" VerticalAlignment="Top" Width="92" Foreground="Black" Click="btnDeactivate_Click"/>
+        <Button x:Name="btnDelete" Content="Slet Konto" HorizontalAlignment="Left" Margin="383,319,0,0" VerticalAlignment="Top" Width="92" Click="btnDelete_Click"/>
     </Grid>
 </Window>

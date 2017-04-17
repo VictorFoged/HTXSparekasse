@@ -12,10 +12,11 @@ namespace HTX_Sparekasse
         public decimal Beløb { get; set; }
         public decimal Saldo { get; set; }
 
-    public transfer(string note, decimal val)
+    public transfer(string note, decimal val, decimal saldo)
         {
             Overførsel = note;
             Beløb = val;
+            Saldo = saldo;
         }
     }
 }

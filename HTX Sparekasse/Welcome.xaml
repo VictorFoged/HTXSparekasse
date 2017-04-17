@@ -8,7 +8,7 @@
         Title="HTX Sparekasse" Height="364.724" Width="534.052" WindowStyle="ThreeDBorderWindow">
     <Grid>
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="334" VerticalAlignment="Top" Width="526">
-            <TabItem Header="Konto Oversigt">
+            <TabItem Header="Kontooversigt">
                 <Grid x:Name="backgroundGrid" Background="#FFE5E5E5" Margin="0,-13,0,0">
 
                     <Label x:Name="lblWelcome" Content="Hej Fornavn Efternavn" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" IsEnabled="False" FontSize="18" Foreground="Black" FontWeight="Bold"/>
@@ -39,10 +39,17 @@
                         <Label x:Name="lblKontonavn4" Content="Kontonavn 1" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="48" Width="341" VerticalContentAlignment="Center"/>
                         <Label x:Name="lblSaldo4" Content="00,00 DKK" HorizontalAlignment="Left" Margin="356,192,0,0" VerticalAlignment="Top" Height="48" Width="144" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
                     </Grid>
-                    <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="297,273,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="120" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center" IsTabStop="False"/>
+                    <TextBox x:Name="txtOpretKonto" HorizontalAlignment="Left" Height="24" Margin="139,273,0,0" TextWrapping="Wrap" Text="Skriv Kontonavn" VerticalAlignment="Top" Width="140" GotFocus="opretKonto_focus" SelectionOpacity="1" BorderBrush="Black" Opacity="0.5" OpacityMask="Black" VerticalContentAlignment="Center" IsTabStop="False"/>
                     <Button x:Name="button" Content="Opret Konto" HorizontalAlignment="Left" Margin="417,273,0,0" VerticalAlignment="Top" Width="83" Height="24" Click="button_Click"/>
-                    <Label x:Name="lblCreateError" Content="" HorizontalAlignment="Left" Margin="184,264,0,0" VerticalAlignment="Top" Width="97" Background="{x:Null}" Foreground="Red"/>
+                    <Label x:Name="lblCreateError" Content="" HorizontalAlignment="Left" Margin="403,247,0,0" VerticalAlignment="Top" Width="97" Background="{x:Null}" Foreground="Red"/>
                     <Label x:Name="hovercolor" Content="Label" HorizontalAlignment="Left" Margin="279,156,0,0" VerticalAlignment="Top" Background="#FFD1D1D1" Visibility="Collapsed"/>
+                    <ComboBox x:Name="cbKontoValg" HorizontalAlignment="Left" Margin="279,273,0,0" VerticalAlignment="Top" Width="138" Height="24" ToolTip="" SelectedIndex="0">
+                        <ComboBoxItem Content="Vælg Kontotype"/>
+                        <ComboBoxItem Content="Løn Konto - 0% ÅOP"/>
+                        <ComboBoxItem Content="Opsparing - 0,5% ÅOP"/>
+                        <ComboBoxItem Content="Pension - 1% ÅOP"/>
+                    </ComboBox>
+                    <Label x:Name="deactivateColor" Content="Label" HorizontalAlignment="Left" Margin="426,184,0,0" VerticalAlignment="Top" Foreground="#FFFFD0D0" Visibility="Hidden"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Overførsler">
@@ -65,13 +72,13 @@
 
                     </ComboBox>
                     <Label x:Name="label3" Content="Beløb:" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="txtValue" HorizontalAlignment="Left" Height="23" Margin="10,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="txtValue" HorizontalAlignment="Left" Height="23" Margin="10,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="1"/>
                     <Label x:Name="label4" Content="DKK" HorizontalAlignment="Left" Margin="130,171,0,0" VerticalAlignment="Top" Height="23"/>
-                    <Button x:Name="btnTransfer" Content="Overfør" HorizontalAlignment="Left" Margin="147,273,0,0" VerticalAlignment="Top" Width="75" Click="btnTransfer_Click"/>
+                    <Button x:Name="btnTransfer" Content="Overfør" HorizontalAlignment="Left" Margin="147,273,0,0" VerticalAlignment="Top" Width="75" Click="btnTransfer_Click" TabIndex="3"/>
                     <Label x:Name="lblTransError" Content="Fejl fejl fejl fejl" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top" Foreground="Red" HorizontalContentAlignment="Right" Width="212" Visibility="Hidden"/>
                     <Label x:Name="GreenLabel" Content="Label" HorizontalAlignment="Left" Margin="323,86,0,0" VerticalAlignment="Top" Foreground="#FF009300" Visibility="Hidden"/>
                     <Label x:Name="label7" Content="Note:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.316,0.423"/>
-                    <TextBox x:Name="txtNote" HorizontalAlignment="Left" Height="23" Margin="10,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
+                    <TextBox x:Name="txtNote" HorizontalAlignment="Left" Height="23" Margin="10,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212" TabIndex="2"/>
 
                 </Grid>
             </TabItem>
@@ -95,6 +102,27 @@
                     <Label x:Name="label5" Content="-&gt;" HorizontalAlignment="Left" Margin="254,115,0,0" VerticalAlignment="Top" Width="21"/>
                     <Button x:Name="button1" Content="Beregn" HorizontalAlignment="Left" Margin="228,188,0,0" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
                     <Label x:Name="label6" Content="Valuta Beregner" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="520" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Rente Beregner">
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="label6_Copy" Content="Rente Beregner" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="520" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" FontWeight="Bold"/>
+                    <DatePicker x:Name="datePicker" HorizontalAlignment="Left" Margin="81,186,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Height="24" Width="123" SelectedDateFormat="Long"/>
+                    <ComboBox x:Name="renteKonto" HorizontalAlignment="Left" Margin="81,128,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem x:Name="dKonto1cc" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto2cc" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto3cc" Visibility="Hidden"/>
+                        <ComboBoxItem x:Name="dKonto4cc" Visibility="Hidden"/>
+
+                    </ComboBox>
+                    <Label x:Name="label8" Content="Vælg Konto" HorizontalAlignment="Left" Margin="81,97,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label9" Content="Beregn Rente til Dato" HorizontalAlignment="Left" Margin="81,155,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtRente" Height="23" Margin="320,127,80,0" TextWrapping="Wrap" VerticalAlignment="Top" AllowDrop="False" Focusable="False" IsHitTestVisible="False" IsTabStop="False"/>
+                    <Label x:Name="label10" Content="Udbetalte Renter" HorizontalAlignment="Left" Margin="320,97,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label11" Content="Konto saldo efter renter" HorizontalAlignment="Left" Margin="320,155,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtSaldoRente" Height="23" Margin="0,186,80,0" TextWrapping="Wrap" VerticalAlignment="Top" AllowDrop="False" Focusable="False" IsHitTestVisible="False" IsTabStop="False" HorizontalAlignment="Right" Width="120"/>
+                    <Button x:Name="btnBeregnRenter" Content="Beregn Renter" HorizontalAlignment="Left" Margin="108,229,0,0" VerticalAlignment="Top" Width="96" Height="24" Click="btnBeregnRenter_Click"/>
+                    <Label x:Name="label12" Content="*Renter bliver udbetalt hver dag" HorizontalAlignment="Left" Margin="390,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.184,0.417" FontStyle="Italic" FontSize="8"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Konto">
