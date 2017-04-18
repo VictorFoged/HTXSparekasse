@@ -24,26 +24,26 @@ namespace HTX_Sparekasse
             InitializeComponent();
         }
 
-        private void btnOpret_Click(object sender, RoutedEventArgs e)
+        private void btnOpret_Click(object sender, RoutedEventArgs e) //Opret Konto Event
         {
             string fNavn = txtNavn.Text;
             string eNavn = txtNavn1.Text;
             string user = txtUser.Text;
-            string pass = txtPass.Password;
+            string pass = Encrypt.encrypt(txtPass.Password + txtNavn.Text); //Salter og Kryptere Password med RSA Algoritme
             
-            if(checkUser(user) == true)
+            if(checkUser(user) == true) //Check if username is available
             {
-                Bank.userlist.Add(new bruger(fNavn, eNavn, user, pass));
-                Bank.writeJson();
-                lblUserError.Visibility = Visibility.Hidden;
-                MainWindow main = new MainWindow();
+                Bank.userlist.Add(new bruger(fNavn, eNavn, user, pass)); //Create new Bruger and add to userlist
+                Bank.writeJson(); //Write to JSON/Database
+                lblUserError.Visibility = Visibility.Hidden; //Hide errors that may have appeared
+                MainWindow main = new MainWindow(); //Go back to new MainWindow (Log in screen)
 
-                this.Close();
+                this.Close(); //Close account creation
                 main.Show();
             }
             else
             {
-                lblUserError.Visibility = Visibility.Visible;
+                lblUserError.Visibility = Visibility.Visible; //Show error message (username taken)
             }
 
                  
@@ -51,7 +51,7 @@ namespace HTX_Sparekasse
 
         }
 
-        private bool checkUser(string brugernavn)
+        private bool checkUser(string brugernavn) //Checks if username is taken, returns true if not
         {
             foreach (bruger u in Bank.userlist)
             {
@@ -63,16 +63,16 @@ namespace HTX_Sparekasse
             return true;
         }
 
-        private void user_gotFocus(object sender, RoutedEventArgs e)
+        private void user_gotFocus(object sender, RoutedEventArgs e) //Event on textbox Focus
         {
             TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
-            tb.GotFocus -= user_gotFocus;
-            tb.Opacity = 100;
+            tb.Text = string.Empty; //Empty Textbox ("Fornavn" eller "Efternavn")
+            tb.GotFocus -= user_gotFocus; //Removes event to avoid clearing user typed content
+            tb.Opacity = 100; //Set normal opacity.
 
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e) //Tilbage Event
         {
             MainWindow main = new MainWindow();
 

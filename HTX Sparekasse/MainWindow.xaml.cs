@@ -27,37 +27,38 @@ namespace HTX_Sparekasse
         public MainWindow()
         {
             InitializeComponent();
-            Bank HTX = new Bank();
+            Bank HTX = new Bank(); //Create Bank Class
+            Encrypt.createKeys();  //Generate Keys for RSA Encryption
             
-            Bank.loadJson();
+            Bank.loadJson();       //Load Userdata from JSON/Database file
             
         }
 
-        private void btnLog_Click(object sender, RoutedEventArgs e)
+        private void btnLog_Click(object sender, RoutedEventArgs e) //Login Click Event
         {
 
-            foreach (bruger user in Bank.userlist)
+            foreach (bruger user in Bank.userlist) //Go Through Every User in loaded JSON file
             {
-                if (user.username == txtUsername.Text)
+                if (user.username == txtUsername.Text) //If Username Matches, Check if password match
                 {
-                    if (user.password == txtPassword.Password)
+                    if (Encrypt.decrypt(user.password) == txtPassword.Password + user.fornavn) //Decrypt Password and add Salt to input
                     {
-                        Bank.currentUser = user;
-                        Welcome main = new Welcome();
+                        Bank.currentUser = user; //If password is correct, set current user to logged in user
+                        Welcome main = new Welcome(); //and load Welcome Window
                         
-                        this.Close();
-                        main.Show();
+                        this.Close(); //Close login Window
+                        main.Show();  //Show Welcome Window
                     }
                     else
                     {
-                        txtErr.Content = "Forkert Password";
+                        txtErr.Content = "Forkert Password"; //If Password doesn't match username
                     }
                 }
                
             }
             if (txtErr.Content.ToString() != "Forkert Password")
             {
-                txtErr.Content = "Brugernavn ikke fundet";
+                txtErr.Content = "Brugernavn ikke fundet"; //If loop completed without logging in or finding mathcing password, give this error.
             }
             
 
@@ -67,15 +68,15 @@ namespace HTX_Sparekasse
 
         }
 
-        private void brnAcc_Click(object sender, RoutedEventArgs e)
+        private void brnAcc_Click(object sender, RoutedEventArgs e) //Opret Konto event
         {
-            CreateAcc main = new CreateAcc();
+            CreateAcc main = new CreateAcc(); //Create CreateAcc window and class.
 
             this.Close();
             main.Show();
         }
 
-        private void enterKey(object sender, KeyEventArgs e)
+        private void enterKey(object sender, KeyEventArgs e) //Trigger log in event on enter keypress.
         {
             if (e.Key == Key.Enter)
             {

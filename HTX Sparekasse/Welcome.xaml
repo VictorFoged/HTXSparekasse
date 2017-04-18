@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HTX_Sparekasse"
         mc:Ignorable="d"
-        Title="HTX Sparekasse" Height="364.724" Width="534.052" WindowStyle="ThreeDBorderWindow">
+        Title="HTX Sparekasse" Height="364.724" Width="534.052" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize">
     <Grid>
         <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="334" VerticalAlignment="Top" Width="526">
             <TabItem Header="Kontooversigt">
@@ -45,9 +45,9 @@
                     <Label x:Name="hovercolor" Content="Label" HorizontalAlignment="Left" Margin="279,156,0,0" VerticalAlignment="Top" Background="#FFD1D1D1" Visibility="Collapsed"/>
                     <ComboBox x:Name="cbKontoValg" HorizontalAlignment="Left" Margin="279,273,0,0" VerticalAlignment="Top" Width="138" Height="24" ToolTip="" SelectedIndex="0">
                         <ComboBoxItem Content="Vælg Kontotype"/>
-                        <ComboBoxItem Content="Løn Konto - 0% ÅOP"/>
-                        <ComboBoxItem Content="Opsparing - 0,5% ÅOP"/>
-                        <ComboBoxItem Content="Pension - 1% ÅOP"/>
+                        <ComboBoxItem Content="Løn Konto - 0% p.a."/>
+                        <ComboBoxItem Content="Opsparing - 0,5% p.a."/>
+                        <ComboBoxItem Content="Pension - 1% p.a."/>
                     </ComboBox>
                     <Label x:Name="deactivateColor" Content="Label" HorizontalAlignment="Left" Margin="426,184,0,0" VerticalAlignment="Top" Foreground="#FFFFD0D0" Visibility="Hidden"/>
                 </Grid>

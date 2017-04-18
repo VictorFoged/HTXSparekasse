@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HTX_Sparekasse"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Name="kontOversigt" x:Class="HTX_Sparekasse.KontoView"
         mc:Ignorable="d"
-        Title="Konto Oversigt" Height="387.131" Width="504.056">
+        Title="Konto Oversigt" Height="387.131" Width="504.056" ResizeMode="NoResize">
     <Grid Margin="0,0,11,0">
         <ListView Margin="8,132,0,0" Name="transfers" HorizontalAlignment="Left" Width="365" Height="207" VerticalAlignment="Top">
             <ListView.View>

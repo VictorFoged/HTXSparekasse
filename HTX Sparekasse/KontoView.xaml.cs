@@ -20,34 +20,35 @@ namespace HTX_Sparekasse
     public partial class KontoView : Window
     {
         konto cKont;
-        public KontoView(konto currentKonto)
+        public KontoView(konto currentKonto) //Class Contructor
         {
             InitializeComponent();
-            cKont = currentKonto;
+            cKont = currentKonto; //Set Which Konto to display
             //currentKonto.oversigt.Reverse();
-            transfers.ItemsSource = currentKonto.oversigt;
+            transfers.ItemsSource = currentKonto.oversigt; //Set Item Source for Transaction Overview (ListView)
             
-            lblKontoNavn.Content = currentKonto.navn;
+            //Set user specific variables
+            lblKontoNavn.Content = currentKonto.navn; 
             lblSaldo.Content = currentKonto.saldo + " DKK";
             kontOversigt.Title = currentKonto.navn + " - Konto Oversigt";
 
-            switch (currentKonto.kontoType)
+            switch (currentKonto.kontoType) //Display Kontotype
             {
                 case 1:
-                    lblKontotype.Content = "Lønkonto - 0% ÅOP";
+                    lblKontotype.Content = "Lønkonto - 0% p.a.";
                     break;
                 case 2:
-                    lblKontotype.Content = "Opsparingskonto - 0.5% ÅOP";
+                    lblKontotype.Content = "Opsparingskonto - 0.5% p.a.";
                     break;
                 case 3:
-                    lblKontotype.Content = "Pensionskonto - 1% ÅOP";
-                    btnWithdraw.Visibility = Visibility.Hidden;
+                    lblKontotype.Content = "Pensionskonto - 1% p.a.";
+                    btnWithdraw.Visibility = Visibility.Hidden; //Can't Withdraw money from Pension konto, hide option from user.
                     txtBeløb.Visibility = Visibility.Hidden;
                     break;
                 default:
                     break;
             }
-            if (cKont.active == true)
+            if (cKont.active == true) //Make sure Activate/Deactivate Button has the correct state.
             {
                 cKont.active = false;
                 btnDeactivate.Content = "Aktiver Konto";
@@ -61,7 +62,7 @@ namespace HTX_Sparekasse
 
         }
 
-        private void btnDeactivate_Click(object sender, RoutedEventArgs e)
+        private void btnDeactivate_Click(object sender, RoutedEventArgs e) //Activate and Deactivate Konto, set state and change button content
         {
             if (cKont.active == true)
             {
@@ -77,32 +78,34 @@ namespace HTX_Sparekasse
                 
 
             }
-            Welcome.cWin.checkCombo();
-            Bank.writeJson();
+            Welcome.cWin.checkCombo(); //Update Comboboxes, removes inactive Kontoer
+            Bank.writeJson(); //Write to JSON/Database
         }
 
-        private void opaBeløb(object sender, RoutedEventArgs e)
+        private void opaBeløb(object sender, RoutedEventArgs e) //Focus Event for withdraw field
         {
             TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
+            tb.Text = string.Empty; //Empty textbox
 
             tb.Opacity = 100;
         }
 
-        private void btnWithdraw_Click(object sender, RoutedEventArgs e)
+        private void btnWithdraw_Click(object sender, RoutedEventArgs e) //Withdraw money
         {
             decimal input;
 
-            if (decimal.TryParse(txtBeløb.Text, out input))
+            if (decimal.TryParse(txtBeløb.Text, out input)) //Convert string to decimal
             {
-                if (input > 0)
+                if (input > 0) //Can Only withdraw positive amounts.
                 {
-                    cKont.removeCash(input);
-                    cKont.oversigt.Add(new transfer("Beløb Hævet", -input, cKont.saldo));
-                    transfers.Items.Refresh();
-                    txtBeløb.Text = "Indtast Beløb";
+                    cKont.removeCash(input); //Removes Cash from saldo
+                    cKont.oversigt.Add(new transfer("Beløb Hævet", -input, cKont.saldo)); //Add transfer with default note
+                    transfers.Items.Refresh(); //refresh item source
+                    txtBeløb.Text = "Indtast Beløb"; //Fill Withdraw textbox with placeholder text
                     txtBeløb.Opacity = 50;
-                    lblSaldo.Content = cKont.saldo;
+                    lblSaldo.Content = cKont.saldo; //Update Saldo label
+
+                    //Check Comboboxes and Write to JSON/Database
                     Welcome.cWin.checkKonto();
                     Bank.writeJson();
                 }
@@ -111,13 +114,14 @@ namespace HTX_Sparekasse
             }
         }
 
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void btnDelete_Click(object sender, RoutedEventArgs e) //Delete Event Click
         {
+            //Create Alert/Message 
             MessageBoxResult result = MessageBox.Show("Vil du slette denne konto? Alle data vil gå tabt", "Bekræft", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                Bank.currentUser.kontoListe.Remove(cKont);
-                Welcome.cWin.checkKonto();
+                Bank.currentUser.kontoListe.Remove(cKont); //Removes Konto from list
+                Welcome.cWin.checkKonto(); //Closes Window and updates fields.
                 this.Close();
             }
         }

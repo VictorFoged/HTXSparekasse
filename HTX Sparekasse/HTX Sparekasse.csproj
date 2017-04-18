@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +65,7 @@
     <Compile Include="CreateAcc.xaml.cs">
       <DependentUpon>CreateAcc.xaml</DependentUpon>
     </Compile>
+    <Compile Include="encrypt.cs" />
     <Compile Include="konto.cs" />
     <Compile Include="KontoView.xaml.cs">
       <DependentUpon>KontoView.xaml</DependentUpon>
