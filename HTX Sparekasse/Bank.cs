@@ -13,7 +13,7 @@ namespace HTX_Sparekasse
     {
         public static List<bruger> userlist = new List<bruger>();
         public static  bruger currentUser;
-        public static string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.txt");
+        public static string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.txt"); //Get Current Folder
 
 
         public static void writeJson()
@@ -26,10 +26,9 @@ namespace HTX_Sparekasse
             
         }
 
-        public static void loadJson()
+        public static void loadJson() //Load JSON and deserialize into a user list
         {
 
-            
             using (StreamReader r = new StreamReader(path))
             {
                 string json = r.ReadToEnd();

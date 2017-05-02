@@ -21,17 +21,17 @@ namespace HTX_Sparekasse
             kontoType = type;
         }
 
-        public void addCash(decimal val)
+        public void addCash(decimal val) //Used to add cash from National Banken
         {
             saldo = Math.Round(saldo + val, 2, MidpointRounding.ToEven);
         }
 
-        public void removeCash(decimal val)
+        public void removeCash(decimal val) //Withdraw Money
         {
             saldo = Math.Round(saldo - val, 2, MidpointRounding.ToEven);
         }
 
-        public static void transferCash(konto from, konto to, decimal val)
+        public static void transferCash(konto from, konto to, decimal val) //Transfer between accounts
         {
             from.saldo = Math.Round(from.saldo - val,2, MidpointRounding.ToEven);
             to.saldo = Math.Round(to.saldo + val, 2, MidpointRounding.ToEven);

@@ -26,37 +26,38 @@ namespace HTX_Sparekasse
         {
             InitializeComponent();
             lblWelcome.Content = "Hej " + Bank.currentUser.fornavn + " " + Bank.currentUser.efternavn;
-            kontoer.Add(konto1);
+            kontoer.Add(konto1); //Add Grids to list
             kontoer.Add(konto2);
             kontoer.Add(konto3);
             kontoer.Add(konto4);
-            checkKonto();
-            checkCombo();
+            checkKonto(); //Check Which Accounts has been created
+            checkCombo(); //Check Comboboxes
 
         }
 
         public void checkCombo()
         {
-            List<ComboBoxItem> dropDown = new List<ComboBoxItem>();
+            List<ComboBoxItem> dropDown = new List<ComboBoxItem>(); //Create lists of comboboxes to iterate over
             dropDown.Add(dKonto1);
             dropDown.Add(dKonto2);
             dropDown.Add(dKonto3);
             dropDown.Add(dKonto4);
-            int index = 0;
-            foreach (konto konto in Bank.currentUser.kontoListe)
+            int index = 0; //dropDown list index
+            foreach (konto konto in Bank.currentUser.kontoListe) //Go through each konto for each user.
             {
-                dropDown[index].Content = konto.navn;
+                dropDown[index].Content = konto.navn; //Set Name of index to the name of the account
                 if (konto.active == true)
                 {
-                    dropDown[index].Visibility = Visibility.Visible;
+                    dropDown[index].Visibility = Visibility.Visible; //Make it visible
                 }
                 else
                 {
-                    dropDown[index].Visibility = Visibility.Collapsed;
+                    dropDown[index].Visibility = Visibility.Collapsed; //Make it invisible if the account is inactive
                 }
                 
                 index = index + 1;
             }
+            //Set all Comboboxes to have the same properties
             dKonto1c.Content = dKonto1.Content;
             dKonto1c.Visibility = dKonto1.Visibility;
             dKonto2c.Content = dKonto2.Content;
@@ -78,7 +79,7 @@ namespace HTX_Sparekasse
 
         }
 
-        private void opretKonto_focus(object sender, RoutedEventArgs e)
+        private void opretKonto_focus(object sender, RoutedEventArgs e) //Empty textbox on textbox focus
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
@@ -89,15 +90,15 @@ namespace HTX_Sparekasse
         public void checkKonto()
         {
             int index = 0;
-            konto1.Visibility = Visibility.Hidden;
+            konto1.Visibility = Visibility.Hidden; //Hide all accounts initially (tab1)
             konto2.Visibility = Visibility.Hidden;
             konto3.Visibility = Visibility.Hidden;
             konto4.Visibility = Visibility.Hidden;
-            foreach (konto konto in Bank.currentUser.kontoListe)
+            foreach (konto konto in Bank.currentUser.kontoListe) //Foreach account in list, make it visible
             {
                 
                 kontoer[index].Visibility = Visibility.Visible;
-                switch (index)
+                switch (index) //Set Account name and Saldo to the correct value
                 {
                     case 0:
                         lblKontonavn1.Content = konto.navn;
@@ -127,124 +128,125 @@ namespace HTX_Sparekasse
             }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void button_Click(object sender, RoutedEventArgs e) //Opret Konto Event
         {
-            if (Bank.currentUser.kontoListe.Count < 4)
+            if (Bank.currentUser.kontoListe.Count < 4) //Check if there is space for another account
             {
-                if (cbKontoValg.SelectedIndex > 0)
+                if (cbKontoValg.SelectedIndex > 0) //Check if Kontotype is selected
                 {
-                    Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text, cbKontoValg.SelectedIndex));
+                    Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text, cbKontoValg.SelectedIndex)); //Add new account to list
 
-                    checkKonto();
+                    checkKonto(); //Update interface
                     checkCombo();
-                    Bank.writeJson();
+                    Bank.writeJson(); //Write to Database/JSON
+                    lblCreateError.Content = string.Empty;
                 }
                 else
                 {
-                    lblCreateError.Content = "Vælg Kontotype";
+                    lblCreateError.Content = "Vælg Kontotype"; //Show error
                 }
                 
             }
             else
             {
-                lblCreateError.Content = "Maks 4 Kontoer";
+                lblCreateError.Content = "Maks 4 Kontoer"; //Show error
             }
             
         }
 
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void btnLogOut_Click(object sender, RoutedEventArgs e) //Log Out Event
         {
             MainWindow main = new MainWindow();
-            Bank.currentUser = null;
-            this.Close();
-            main.Show();
+            Bank.currentUser = null; //Set current User to null
+            this.Close(); //Close Window
+            main.Show();  //Show login screen
 
         }
 
         public static Welcome cWin;
         private void click1Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto1 = new KontoView(Bank.currentUser.kontoListe[0]);
-            cWin = this;
-            konto1.Hide();          
+            KontoView konto1 = new KontoView(Bank.currentUser.kontoListe[0]); //Open first account in list
+            cWin = this;        
             konto1.Show();
             
         }
 
         private void click2Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto2 = new KontoView(Bank.currentUser.kontoListe[1]);
+            KontoView konto2 = new KontoView(Bank.currentUser.kontoListe[1]); //Open second account in list
             cWin = this;
             konto2.Show();
         }
 
         private void click3Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto3 = new KontoView(Bank.currentUser.kontoListe[2]);
+            KontoView konto3 = new KontoView(Bank.currentUser.kontoListe[2]); //Open third account in list
             cWin = this;
             konto3.Show();
         }
 
         private void click4Grid(object sender, MouseButtonEventArgs e)
         {
-            KontoView konto4 = new KontoView(Bank.currentUser.kontoListe[3]);
+            KontoView konto4 = new KontoView(Bank.currentUser.kontoListe[3]); //Open fourth account in list
             cWin = this;
             konto4.Show();
         }
 
-        private void btnTransfer_Click(object sender, RoutedEventArgs e)
+        private void btnTransfer_Click(object sender, RoutedEventArgs e) 
         {
-            lblTransError.Visibility = Visibility.Hidden;
+            lblTransError.Visibility = Visibility.Hidden; //Hide error label
             decimal val;
-            if (decimal.TryParse(txtValue.Text, out val))
+            if (decimal.TryParse(txtValue.Text, out val)) //Try to parse textbox content as decimal
             {
 
 
-                if (cbFrom.SelectedIndex != -1)
+                if (cbFrom.SelectedIndex != -1) //Check if account selected
                 {
-                    if (cbTo.SelectedIndex != -1)
+                    if (cbTo.SelectedIndex != -1) //Check if account is selected
                     {
-                        if (cbFrom.SelectedIndex == 4)
+                        if (cbFrom.SelectedIndex == 4) //Check if account is "National Banken"
                         {
+                            //Add Cash to account
                             Bank.currentUser.kontoListe[cbTo.SelectedIndex].addCash(val);
-                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val, Bank.currentUser.kontoListe[cbTo.SelectedIndex].saldo));
+                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val, Bank.currentUser.kontoListe[cbTo.SelectedIndex].saldo)); //Create transfer log
                             
                             successPayment();
                         }
-                        else
+                        else //Create Transaction
                         {
                             konto.transferCash(Bank.currentUser.kontoListe[cbFrom.SelectedIndex], Bank.currentUser.kontoListe[cbTo.SelectedIndex], val);
-                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val, Bank.currentUser.kontoListe[cbTo.SelectedIndex].saldo));
+                            Bank.currentUser.kontoListe[cbTo.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, val, Bank.currentUser.kontoListe[cbTo.SelectedIndex].saldo)); //Create transfer log for both accounts
                             Bank.currentUser.kontoListe[cbFrom.SelectedIndex].oversigt.Add(new transfer(txtNote.Text, -val, Bank.currentUser.kontoListe[cbFrom.SelectedIndex].saldo));
                             successPayment();
                         }
                     }
                     else
-                    {
+                    { //Error 
                         lblTransError.Content = "Vælg en konto at overføre til";
                         lblTransError.Visibility = Visibility.Visible;
                     }
                     
                 }
                 else
-                {
+                { //Error
                     lblTransError.Content = "Vælg en konto at overføre fra";
                     lblTransError.Visibility = Visibility.Visible;
                 }
             }
                 
             else
-            {
+            { //Error
                 lblTransError.Content = "Indtast et beløb";
                 lblTransError.Visibility = Visibility.Visible;
             }
 
             checkKonto();
-            Bank.writeJson();
+            Bank.writeJson(); //Update Database
             
         }
 
-        private void successPayment()
+        private void successPayment() //Update Interface when payment is successful 
         {
             txtValue.Text = "";
             cbFrom.SelectedIndex = -1;
@@ -258,17 +260,17 @@ namespace HTX_Sparekasse
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             //0 = DKK, 1 = USD, 2 = EUR, 3 = GBP
-            Dictionary<int, List<double>> valuta = new Dictionary<int, List<double>>();
-            valuta[0] = new List<double> { 1, 0.1419, 0.1343, 0.1151 };
-            valuta[1] = new List<double> { 7.0216, 1, 0.9436, 0.8081 };
-            valuta[2] = new List<double> { 7.4413, 1.0598, 1, 0.8564 };
+            Dictionary<int, List<double>> valuta = new Dictionary<int, List<double>>(); //Create Dictionary with int as key and value as a list of currency conversion rates
+            valuta[0] = new List<double> { 1, 0.1419, 0.1343, 0.1151 }; //From DKK to DKK, USD, EUR, GBP.
+            valuta[1] = new List<double> { 7.0216, 1, 0.9436, 0.8081 }; //From USD to DKK, USD, EUR, GBP.
+            valuta[2] = new List<double> { 7.4413, 1.0598, 1, 0.8564 }; //etc.
             valuta[3] = new List<double> { 8.6891, 1.2375, 1.1677, 1 };
 
-            double input;
+            double input; //declare out value
 
-            if (Double.TryParse(txtValFrom.Text, out input))
+            if (Double.TryParse(txtValFrom.Text, out input)) //Try to parse string input to double
             {
-                if (cbValFrom.SelectedIndex != -1 || cbValTo.SelectedIndex != -1)
+                if (cbValFrom.SelectedIndex != -1 && cbValTo.SelectedIndex != -1) //Check if both boxes have selected
                 {
                     double value = Math.Round(input * valuta[cbValFrom.SelectedIndex][cbValTo.SelectedIndex], 2);
                     txtValTo.Text = value.ToString();
@@ -281,7 +283,7 @@ namespace HTX_Sparekasse
 
         }
 
-        private void refill(object sender, RoutedEventArgs e)
+        private void refill(object sender, RoutedEventArgs e) //Refill Text Box
         {
 
             TextBox tb = (TextBox)sender;
@@ -292,13 +294,13 @@ namespace HTX_Sparekasse
             }
         }
         
-        private void changeColor(object sender, MouseEventArgs e)
+        private void changeColor(object sender, MouseEventArgs e) //Change Color on Hover
         {
             Grid gr = (Grid)sender;
             
             switch (gr.Name)
             {
-                case "konto1":
+                case "konto1": 
                     brdKonto1.Background = hovercolor.Background;
                     
                     break;
@@ -321,7 +323,7 @@ namespace HTX_Sparekasse
             }
         }
 
-        private void defaultColor(object sender, MouseEventArgs e)
+        private void defaultColor(object sender, MouseEventArgs e) //Change to Default Color on noHover
         {
             Grid gr = (Grid)sender;
 

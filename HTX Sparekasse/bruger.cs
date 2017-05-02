@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,15 +13,17 @@ namespace HTX_Sparekasse
         public string fornavn;
         public string efternavn;
         public string username;
-        public string password;
+        //public string password; Decided to Save CipherBlock instead of CipherText password
         public List<konto> kontoListe = new List<konto>();
+        public List<BigInteger> cipherBlock = new List<BigInteger>();
 
-        public bruger(string fNavn, string eNavn, string user, string pass)
+        public bruger(string fNavn, string eNavn, string user,  List<BigInteger> cB)
         {
             fornavn = fNavn;
             efternavn = eNavn;
             username = user;
-            password = pass;
+            // password = pass;
+            cipherBlock = cB;
 
         }
 

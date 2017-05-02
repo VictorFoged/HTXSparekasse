@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,11 +30,11 @@ namespace HTX_Sparekasse
             string fNavn = txtNavn.Text;
             string eNavn = txtNavn1.Text;
             string user = txtUser.Text;
-            string pass = Encrypt.encrypt(txtPass.Password + txtNavn.Text); //Salter og Kryptere Password med RSA Algoritme
-            
+            //string pass = Encrypt.encrypt(txtPass.Password + txtNavn.Text); //Salter og Kryptere Password med RSA Algoritme
+            List<BigInteger> cipherBlock = Encrypt.getCB(txtPass.Password + txtNavn.Text);
             if(checkUser(user) == true) //Check if username is available
             {
-                Bank.userlist.Add(new bruger(fNavn, eNavn, user, pass)); //Create new Bruger and add to userlist
+                Bank.userlist.Add(new bruger(fNavn, eNavn, user, cipherBlock)); //Create new Bruger and add to userlist
                 Bank.writeJson(); //Write to JSON/Database
                 lblUserError.Visibility = Visibility.Hidden; //Hide errors that may have appeared
                 MainWindow main = new MainWindow(); //Go back to new MainWindow (Log in screen)
@@ -53,14 +54,22 @@ namespace HTX_Sparekasse
 
         private bool checkUser(string brugernavn) //Checks if username is taken, returns true if not
         {
-            foreach (bruger u in Bank.userlist)
+            if (Bank.userlist != null)
             {
-                if (u.username == brugernavn)
+                foreach (bruger u in Bank.userlist)
                 {
-                    return false;
+                    if (u.username == brugernavn)
+                    {
+                        return false;
+                    }
                 }
+                return true;
             }
-            return true;
+            else
+            {
+                return true;
+            }
+            
         }
 
         private void user_gotFocus(object sender, RoutedEventArgs e) //Event on textbox Focus

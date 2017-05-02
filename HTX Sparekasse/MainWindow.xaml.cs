@@ -41,7 +41,8 @@ namespace HTX_Sparekasse
             {
                 if (user.username == txtUsername.Text) //If Username Matches, Check if password match
                 {
-                    if (Encrypt.decrypt(user.password) == txtPassword.Password + user.fornavn) //Decrypt Password and add Salt to input
+                    
+                    if (Encrypt.decrypt(user.cipherBlock) == txtPassword.Password + user.fornavn) //Decrypt Password and add Salt to input
                     {
                         Bank.currentUser = user; //If password is correct, set current user to logged in user
                         Welcome main = new Welcome(); //and load Welcome Window
