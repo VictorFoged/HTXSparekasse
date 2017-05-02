@@ -352,32 +352,32 @@ namespace HTX_Sparekasse
             }
         }
 
-        private void btnBeregnRenter_Click(object sender, RoutedEventArgs e)
+        private void btnBeregnRenter_Click(object sender, RoutedEventArgs e) //Calculate Interest Rate
         {
-            DateTime today = DateTime.Today;
+            DateTime today = DateTime.Today; //Get todays date
             DateTime inputDate;
-            DateTime? date = datePicker.SelectedDate;
-            konto valgtKonto = Bank.currentUser.kontoListe[renteKonto.SelectedIndex];
+            DateTime? date = datePicker.SelectedDate; //Set Nullable selected date.
+            konto valgtKonto = Bank.currentUser.kontoListe[renteKonto.SelectedIndex]; 
             decimal saldo = valgtKonto.saldo;
-            decimal åop = 0;
+            decimal pa = 0;
 
-            switch (valgtKonto.kontoType)
+            switch (valgtKonto.kontoType) //Set pa (interest rate) depending on account type
             {
                 case 1:
-                    åop = 0;
+                    pa = 0;
                     break;
                 case 2:
-                    åop = 0.005m;
+                    pa = 0.005m;
                     break;
                 case 3:
-                    åop = 0.01m;
+                    pa = 0.01m;
                     break;
                 default:
                     break;
             }
-            if (valgtKonto.saldo < 0)
+            if (valgtKonto.saldo < 0) //Set negative interest rate if account is overdrawn
             {
-                åop = -0.2m;
+                pa = -0.2m;
             }
 
 
@@ -385,51 +385,38 @@ namespace HTX_Sparekasse
 
             if (date == null)
             {
-
+                //Make sure user selected a date.
             }
             else
             {
-                DateTime.TryParse(date.Value.ToString(), out inputDate);
-                TimeSpan tSpan = inputDate - today;
+                DateTime.TryParse(date.Value.ToString(), out inputDate); //Convert to non nullable DateTime
+                TimeSpan tSpan = inputDate - today; //Calc timespan difference
 
-                int daysDiff = tSpan.Days;
-                int yearDiff = daysDiff / 365;
+                int daysDiff = tSpan.Days; //Timespan in days
+                
                 double p;
                 double k;
-                Double.TryParse(åop.ToString(), out p);
+                Double.TryParse(pa.ToString(), out p); //Regret using decimal, convert to double
                 Double.TryParse(valgtKonto.saldo.ToString(), out k);
 
                 if (k < 0)
                 {
-                    double afterSaldo = k * Math.Pow(1 + -p / 365, daysDiff);
-                    double rente = afterSaldo - k;
-                    txtRente.Text = Math.Round(rente, 2).ToString();
+                    double afterSaldo = k * Math.Pow(1 + -p / 365, daysDiff); //Calculate account balance after interest for time selected
+                    double rente = afterSaldo - k; //Calculate "loss"
+                    txtRente.Text = Math.Round(rente, 2).ToString(); //Show results
                     txtSaldoRente.Text = Math.Round(-afterSaldo, 2).ToString();
                 }
                 else
                 {
-                    double afterSaldo = k * Math.Pow(1 + p / 365, daysDiff);
-                    double rente = afterSaldo - k;
+                    double afterSaldo = k * Math.Pow(1 + p / 365, daysDiff); //Calculate account balance after interest for time selected
+                    double rente = afterSaldo - k; //Calculate Profit
                     txtRente.Text = Math.Round(rente, 2).ToString();
                     txtSaldoRente.Text = Math.Round(afterSaldo, 2).ToString();
                 }
                 
-                
 
-
-                
-                
             }
 
-
-            
-
-            
-
-            //Console.WriteLine(tSpan.Days);
-            //Console.WriteLine(inputDate);
-            //Console.WriteLine(datePicker.SelectedDate);
-            //Console.WriteLine(today);
         }
     }
 }
