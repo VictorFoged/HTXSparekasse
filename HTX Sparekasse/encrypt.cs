@@ -9,7 +9,6 @@ namespace HTX_Sparekasse
 {
     class Encrypt
     {
-
         static int p;
         static int q;
         static int n;
@@ -18,7 +17,7 @@ namespace HTX_Sparekasse
         static int d;
 
         //public static string convertedText;
-        public static string convertedTextBackwards;
+        public static string decryptedNums;
         //public static string decryptedText;
         public static List<int> cipherChars = new List<int>();
         //public static List<BigInteger> cipherBlocks = new List<BigInteger>();
@@ -38,15 +37,14 @@ namespace HTX_Sparekasse
 
             //Calculate n
             n = p * q;
-
             
             //Calculate φ(n) = (p-1)(q-1). - φ(n) = phi
             phi = (p - 1) * (q - 1);
 
-            //Chose e, where 0 < e < φ(n) og (e, φ(n)) = 1
+            //Chose e, where 0 < e < φ(n) and no common divisor.
             e = 7;
 
-            //Calculate d. - e * d ≡ 1 (mod φ(n))
+            //Calculate d. - e * d ≡ 1 % φ(n)
             int RES = 0;
 
             for (d = 1; ; d++)
@@ -72,6 +70,7 @@ namespace HTX_Sparekasse
             {
                 convertedTextBlocks.Add(conString.Substring(i * 2, 2));
             }
+
             foreach (var item in convertedTextBlocks)
             {
                 BigInteger cipherBlock = BigInteger.Pow(BigInteger.Parse(item), e) % n; //Encrypt Block with RSA
@@ -82,18 +81,14 @@ namespace HTX_Sparekasse
             return cipherBlocks;
         }
 
-
-
-
-
         public static string decrypt(List<BigInteger> cipherBlocks)
         {
-            convertedTextBackwards = ""; //Empty static variables
+            decryptedNums = ""; //Empty static variables
             foreach (var item in cipherBlocks)
             {
-                convertedTextBackwards += BigInteger.Pow(item, d) % n; //Decrypt Blocks
+                decryptedNums += BigInteger.Pow(item, d) % n; //Decrypt Blocks
             }
-            return convertToChar(convertedTextBackwards); //Convert back to string
+            return convertToChar(decryptedNums); //Convert back to string
             
         }
 

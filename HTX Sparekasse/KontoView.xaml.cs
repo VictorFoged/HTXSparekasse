@@ -48,9 +48,9 @@ namespace HTX_Sparekasse
                 default:
                     break;
             }
-            if (cKont.active == true) //Make sure Activate/Deactivate Button has the correct state.
+            if (cKont.active == false) //Make sure Activate/Deactivate Button has the correct state.
             {
-                cKont.active = false;
+                
                 btnDeactivate.Content = "Aktiver Konto";
 
 
@@ -93,25 +93,28 @@ namespace HTX_Sparekasse
         private void btnWithdraw_Click(object sender, RoutedEventArgs e) //Withdraw money
         {
             decimal input;
-
-            if (decimal.TryParse(txtBeløb.Text, out input)) //Convert string to decimal
+            if (cKont.active == true)
             {
-                if (input > 0) //Can Only withdraw positive amounts.
+                if (decimal.TryParse(txtBeløb.Text, out input)) //Convert string to decimal
                 {
-                    cKont.removeCash(input); //Removes Cash from saldo
-                    cKont.oversigt.Add(new transfer("Beløb Hævet", -input, cKont.saldo)); //Add transfer with default note
-                    transfers.Items.Refresh(); //refresh item source
-                    txtBeløb.Text = "Indtast Beløb"; //Fill Withdraw textbox with placeholder text
-                    txtBeløb.Opacity = 50;
-                    lblSaldo.Content = cKont.saldo; //Update Saldo label
+                    if (input > 0) //Can Only withdraw positive amounts.
+                    {
+                        cKont.removeCash(input); //Removes Cash from saldo
+                        cKont.oversigt.Add(new transfer("Beløb Hævet", -input, cKont.saldo)); //Add transfer with default note
+                        transfers.Items.Refresh(); //refresh item source
+                        txtBeløb.Text = "Indtast Beløb"; //Fill Withdraw textbox with placeholder text
+                        txtBeløb.Opacity = 50;
+                        lblSaldo.Content = cKont.saldo; //Update Saldo label
 
-                    //Check Comboboxes and Write to JSON/Database
-                    Welcome.cWin.checkKonto();
-                    Bank.writeJson();
+                        //Check Comboboxes and Write to JSON/Database
+                        Welcome.cWin.checkKonto();
+                        Bank.writeJson();
+                    }
+
+
                 }
-                
-
             }
+            
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e) //Delete Event Click

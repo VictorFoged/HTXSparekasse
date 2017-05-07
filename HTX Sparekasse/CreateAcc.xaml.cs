@@ -30,9 +30,8 @@ namespace HTX_Sparekasse
             string fNavn = txtNavn.Text;
             string eNavn = txtNavn1.Text;
             string user = txtUser.Text;
-            //string pass = Encrypt.encrypt(txtPass.Password + txtNavn.Text); //Salter og Kryptere Password med RSA Algoritme
-            List<BigInteger> cipherBlock = Encrypt.getCB(txtPass.Password + txtNavn.Text);
-            if(checkUser(user) == true) //Check if username is available
+            List<BigInteger> cipherBlock = Encrypt.getCB(txtPass.Password + txtNavn.Text);//Salter og Kryptere Password med RSA Algoritme
+            if (checkUser(user) == true) //Check if username is available
             {
                 Bank.userlist.Add(new bruger(fNavn, eNavn, user, cipherBlock)); //Create new Bruger and add to userlist
                 Bank.writeJson(); //Write to JSON/Database

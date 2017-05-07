@@ -13,9 +13,8 @@ namespace HTX_Sparekasse
     {
         public static List<bruger> userlist = new List<bruger>();
         public static  bruger currentUser;
+
         public static string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "user.txt"); //Get Current Folder
-
-
         public static void writeJson()
         {
             string json = JsonConvert.SerializeObject(userlist.ToArray(), Formatting.Indented);

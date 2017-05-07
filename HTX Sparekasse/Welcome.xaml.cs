@@ -137,7 +137,7 @@ namespace HTX_Sparekasse
                     Bank.currentUser.kontoListe.Add(new konto(txtOpretKonto.Text, cbKontoValg.SelectedIndex)); //Add new account to list
 
                     checkKonto(); //Update interface
-                    checkCombo();
+                    checkCombo(); //Update ComboBoxes
                     Bank.writeJson(); //Write to Database/JSON
                     lblCreateError.Content = string.Empty;
                 }
